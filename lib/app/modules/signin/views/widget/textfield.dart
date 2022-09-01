@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:travel_aliga/app/utils/colors.dart';
 
 class TextfieldWidget extends StatelessWidget {
   final String hint;
@@ -19,11 +20,20 @@ class TextfieldWidget extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       decoration: BoxDecoration(
-        color: Colors.grey.withOpacity(.3),
+        color: AppColor.kFormfieldInside,
         borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: AppColor.kFormfieldBorder
+        )
       ),
-      child: TextField(
+      child: TextFormField(
         controller: controller,
+           validator: (value) {
+          if (value!.isEmpty) {
+            return 'Please fill this field';
+          }
+          return null;
+        },
         keyboardType: keyType,
         style: const TextStyle(
           height: 1.3,
