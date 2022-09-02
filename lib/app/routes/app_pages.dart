@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import 'package:travel_aliga/app/modules/home/bindings/home_binding.dart';
 import 'package:travel_aliga/app/modules/home/views/home_view.dart';
+import 'package:travel_aliga/app/modules/otp/bindings/otp_binding.dart';
+import 'package:travel_aliga/app/modules/otp/views/otp_view.dart';
 import 'package:travel_aliga/app/modules/signin/bindings/signin_binding.dart';
 import 'package:travel_aliga/app/modules/signin/views/signin_view.dart';
 import 'package:travel_aliga/app/modules/signup/bindings/signup_binding.dart';
@@ -12,7 +14,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const initial = Routes.signUp;
+  static const initial = Routes.otp;
 
   static final routes = [
     GetPage(
@@ -29,6 +31,11 @@ class AppPages {
       name: _Paths.signUp,
       page: () => SignupView(),
       binding: SignupBinding(),
+    ),
+    GetPage(
+      name: _Paths.otp,
+      page: () => OtpView(),
+      binding: OtpBinding(),
     ),
   ];
 }

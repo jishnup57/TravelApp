@@ -12,6 +12,7 @@ dependencies:
     sdk: flutter
   dio: ^4.0.6
   google_fonts: ^3.0.1
+  flutter_otp_text_field: ^1.1.0+2
 
 dev_dependencies: 
   flutter_lints: ^2.0.0

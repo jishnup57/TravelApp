@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -82,23 +83,29 @@ class SignupView extends StatelessWidget {
           )
         ],
       ),
-      floatingActionButton: ElevatedButton(
-        onPressed: () {
-          controller.onSignupButton();
-        },
-        child: Text(
-          'Sign Up',
-          style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w700,
-              fontFamily: GoogleFonts.ubuntu().fontFamily),
+      floatingActionButton: Visibility(
+        visible: MediaQuery.of(context).viewInsets.bottom==0,
+        child: Obx(
+          () => 
+           ElevatedButton(
+            onPressed: () {
+              controller.onSignupButton();
+            },
+            child:controller.isLoading.isFalse? Text(
+              'Sign Up',
+              style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: GoogleFonts.ubuntu().fontFamily),
+            ):CupertinoActivityIndicator( color: AppColor.kWhiteColor,radius: 15,),
+            style: ElevatedButton.styleFrom(
+                minimumSize: Size(width - 20, 50),
+                primary: Color.fromARGB(255, 168, 172, 122),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                )),
+          ),
         ),
-        style: ElevatedButton.styleFrom(
-            minimumSize: Size(width - 20, 50),
-            primary: Color(0xff0088d1),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            )),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
