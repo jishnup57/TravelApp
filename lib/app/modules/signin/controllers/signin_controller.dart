@@ -27,17 +27,16 @@ class SigninController extends GetxController {
     );
     try {
       final result = await dio.post(Url.login, data: obj.toJson());
-      if (result.statusCode! >= 200 || result.statusCode! <= 299) {
+      if (result.statusCode! >= 200 && result.statusCode! <= 299) {
         print(result.data);
         final value = TokenModel.fromJson(result.data);
         print(value.token);
         Get.off(() => HomeView());
+      }else{
+        showSnakBar('Client Faliure');
       }
-    } on DioError catch (e) {
-      showSnakBar(e.error);
-      log(e.error.toString());
     } catch (e) {
-      showSnakBar('Unable to connect');
+      showSnakBar('Server Faliure Unable to connect');
       log(e.toString());
     }
   }
@@ -54,7 +53,7 @@ class SigninController extends GetxController {
     update();
   }
 
-  showSnakBar(String message) {
+ static showSnakBar(String message) {
     Get.snackbar(
       "Error",
       '',

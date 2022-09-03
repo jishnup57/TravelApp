@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_aliga/app/modules/signin/views/widget/textfield.dart';
 import 'package:travel_aliga/app/modules/signin/views/widget/textfieldtwwo.dart';
+import 'package:travel_aliga/app/routes/app_pages.dart';
 import 'package:travel_aliga/app/utils/colors.dart';
 import 'package:travel_aliga/app/utils/style.dart';
 import '../controllers/signin_controller.dart';
@@ -56,16 +57,19 @@ class SigninView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Text('New to Aliga Register')
-                RichText(
-                  text: TextSpan(
-                      text: 'New to Aliga ',
-                      style: AppStyle.kLoginIntermedText
-                          .copyWith(fontWeight: FontWeight.normal),
-                      children: [
-                        TextSpan(
-                            text: 'Register?',
-                            style: AppStyle.kLoginIntermedText)
-                      ]),
+                GestureDetector(
+                  onTap: () => Get.toNamed(Paths.signUp),
+                  child: RichText(
+                    text: TextSpan(
+                        text: 'New to Aliga ',
+                        style: AppStyle.kLoginIntermedText
+                            .copyWith(fontWeight: FontWeight.normal),
+                        children: [
+                          TextSpan(
+                              text: 'Register?',
+                              style: AppStyle.kLoginIntermedText)
+                        ]),
+                  ),
                 ),
                 Text('Forgot password?', style: AppStyle.kLoginIntermedText)
               ],

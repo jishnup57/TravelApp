@@ -14,26 +14,26 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const initial = Routes.otp;
+  static const initial = Routes.signIn;
 
   static final routes = [
     GetPage(
-      name: _Paths.home,
+      name: Paths.home,
       page: () => HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
-      name: _Paths.signIn,
+      name: Paths.signIn,
       page: () => SigninView(),
       binding: SigninBinding(),
     ),
     GetPage(
-      name: _Paths.signUp,
+      name: Paths.signUp,
       page: () => SignupView(),
       binding: SignupBinding(),
     ),
     GetPage(
-      name: _Paths.otp,
+      name: Paths.otp,
       page: () => OtpView(),
       binding: OtpBinding(),
     ),

@@ -4,13 +4,13 @@ part of 'app_pages.dart';
 abstract class Routes {
   Routes._();
 
-  static const home = _Paths.home;
-  static const signIn = _Paths.signIn;
-  static const signUp = _Paths.signUp;
-  static const otp = _Paths.otp;
+  static const home = Paths.home;
+  static const signIn = Paths.signIn;
+  static const signUp = Paths.signUp;
+  static const otp = Paths.otp;
 }
 
-abstract class _Paths {
+abstract class Paths {
   static const home = '/home';
   static const signIn = '/signin';
   static const signUp = '/signup';

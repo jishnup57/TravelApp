@@ -16,7 +16,7 @@ class OtpView extends GetView<OtpController> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text('Verification code',style: AppStyle.kWelcomeSmall.copyWith(fontSize: 22,color: AppColor.kBlackColor,),),
-          Text('We have send the verification code to',style: AppStyle.kLoginIntermedText,),
+          Text('We have send the verification code to',style: AppStyle.kLoginIntermedText.copyWith(color: Colors.grey),),
           Text('+919567551757',style: AppStyle.kLoginIntermedText,),
           OtpTextField(
             numberOfFields: 6,

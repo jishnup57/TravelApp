@@ -25,8 +25,15 @@ class SignupView extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          Image.asset(
-            'asset/image/signup-removebg-preview.png',
+          Stack(
+            children: [
+              Image.asset(
+                'asset/image/signup-removebg-preview.png',
+              ),
+              IconButton(
+                  onPressed: () => Get.back(),
+                  icon: Icon(Icons.arrow_back_ios_new)),
+            ],
           ),
           Form(
             key: controller.signUpKey,
@@ -78,26 +85,28 @@ class SignupView extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
-            height: 200,
-          )
+        
         ],
       ),
       floatingActionButton: Visibility(
-        visible: MediaQuery.of(context).viewInsets.bottom==0,
+        visible: MediaQuery.of(context).viewInsets.bottom == 0,
         child: Obx(
-          () => 
-           ElevatedButton(
+          () => ElevatedButton(
             onPressed: () {
               controller.onSignupButton();
             },
-            child:controller.isLoading.isFalse? Text(
-              'Sign Up',
-              style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: GoogleFonts.ubuntu().fontFamily),
-            ):CupertinoActivityIndicator( color: AppColor.kWhiteColor,radius: 15,),
+            child: controller.isLoading.isFalse
+                ? Text(
+                    'Sign Up',
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: GoogleFonts.ubuntu().fontFamily),
+                  )
+                : CupertinoActivityIndicator(
+                    color: AppColor.kWhiteColor,
+                    radius: 15,
+                  ),
             style: ElevatedButton.styleFrom(
                 minimumSize: Size(width - 20, 50),
                 primary: Color.fromARGB(255, 168, 172, 122),
