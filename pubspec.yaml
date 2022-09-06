@@ -2,25 +2,27 @@ name: travel_aliga
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
-environment: 
+environment:
   sdk: '>=2.17.6 <3.0.0'
 
-dependencies: 
+dependencies:
   cupertino_icons: ^1.0.2
-  get: 4.6.5
-  flutter: 
-    sdk: flutter
   dio: ^4.0.6
-  google_fonts: ^3.0.1
-  flutter_otp_text_field: ^1.1.0+2
-
-dev_dependencies: 
-  flutter_lints: ^2.0.0
-  lints: 2.0.0
-  flutter_test: 
+  equatable: ^2.0.5
+  flutter:
     sdk: flutter
+  flutter_otp_text_field: ^1.1.0+2
+  get: 4.6.5
+  google_fonts: ^3.0.1
+  shared_preferences: ^2.0.15
 
-flutter: 
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+  lints: 2.0.0
+
+flutter:
   uses-material-design: true
 
   assets:

@@ -78,7 +78,7 @@ class SigninView extends StatelessWidget {
           AppStyle.kHight20,
           ElevatedButton(
             onPressed: () {
-              _controller.onSubmit();
+              _controller.onSubmit(context);
             },
             child: Text(
               'Login',

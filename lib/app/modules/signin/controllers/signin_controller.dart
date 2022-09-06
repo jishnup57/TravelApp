@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:travel_aliga/app/modules/home/views/home_view.dart';
 import 'package:travel_aliga/app/modules/signin/model/signin_model.dart';
 import 'package:travel_aliga/app/modules/signin/model/token_model.dart';
+import 'package:travel_aliga/app/utils/error_dialog.dart';
 import 'package:travel_aliga/app/utils/style.dart';
 import 'package:travel_aliga/app/utils/urls.dart';
 
@@ -12,7 +13,7 @@ class SigninController extends GetxController {
   final signUpKey = GlobalKey<FormState>();
   static TextEditingController emailController = TextEditingController();
   static TextEditingController passwordController = TextEditingController();
-  Future<void> onSubmit() async {
+  Future<void> onSubmit(BuildContext ctx) async {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
     if (password.isEmpty || email.isEmpty) {
@@ -35,7 +36,10 @@ class SigninController extends GetxController {
       }else{
         showSnakBar('Client Faliure');
       }
-    } catch (e) {
+    }on DioError catch(e) {
+     ErrorDialoge. errorDialog(ctx,e.response!.statusMessage.toString() ,statusCode:  e.response!.statusCode.toString());
+    } 
+    catch (e) {
       showSnakBar('Server Faliure Unable to connect');
       log(e.toString());
     }
@@ -47,11 +51,6 @@ class SigninController extends GetxController {
     update();
   }
 
-  int count = 0;
-  increment() {
-    count++;
-    update();
-  }
 
  static showSnakBar(String message) {
     Get.snackbar(

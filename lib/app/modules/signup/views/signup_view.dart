@@ -8,8 +8,7 @@ import 'package:travel_aliga/app/modules/signup/controllers/signup_controller.da
 import 'package:travel_aliga/app/modules/signup/views/widget/signupform.dart';
 import 'package:travel_aliga/app/utils/colors.dart';
 
-class SignupView extends StatelessWidget {
-  final controller = Get.put(SignupController());
+class SignupView extends GetView<SignupController> {
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +81,9 @@ class SignupView extends StatelessWidget {
                   obscureText: true,
                   validator: controller.passwordValidator,
                 ),
+                SizedBox(
+                  height: 150,
+                )
               ],
             ),
           ),
