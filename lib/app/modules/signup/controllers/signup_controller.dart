@@ -61,19 +61,45 @@ class SignupController extends GetxController {
     await prefs.setString('UserPhoneNumber', value);
   }
 
-  String? customValidator(String? fieldContent) {
+  List<String> validatorMessage=['First Name','Last Name','Email','Phone Number','Password','Confirm Password'];
+
+  String? firstNameValidator(String? fieldContent,) {
     if (fieldContent!.isEmpty) {
       isLoading.value = false;
-      return 'Please fill this field';
+      return 'Enter First Name';
+    }
+
+    return null;
+  }
+  String? lastNameValidator(String? fieldContent,) {
+    if (fieldContent!.isEmpty) {
+      isLoading.value = false;
+      return 'Enter Last Name';
+    }
+
+    return null;
+  }
+  String? emailValidator(String? fieldContent,) {
+    if (fieldContent!.isEmpty) {
+      isLoading.value = false;
+      return 'Enter Email';
+    }
+
+    return null;
+  }
+  String? passwordValidator(String? fieldContent,) {
+    if (fieldContent!.isEmpty) {
+      isLoading.value = false;
+      return 'Enter Password';
     }
 
     return null;
   }
 
-  String? passwordValidator(String? fieldContent) {
+  String? confirmPasswordValidator(String? fieldContent) {
     if (fieldContent!.isEmpty) {
       isLoading.value = false;
-      return 'Please fill this field';
+      return 'Enter Confirm Password';
     }
     if (fieldContent != passwordControlleer.text) {
       isLoading.value = false;
@@ -85,7 +111,7 @@ class SignupController extends GetxController {
   String? phoneValidator(String? fieldContent) {
     if (fieldContent!.isEmpty) {
       isLoading.value = false;
-      return 'Please fill this field';
+      return 'Enter Phone Number';
     }
     if (fieldContent.length != 10) {
       isLoading.value = false;

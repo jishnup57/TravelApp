@@ -1,4 +1,5 @@
 
+
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
@@ -12,7 +13,7 @@ import 'package:travel_aliga/app/utils/urls.dart';
 
 class OtpController extends GetxController {
  String? phoneNum;
- var isLoading=false.obs;
+ bool isLoading=false;
 
 
 
@@ -25,13 +26,12 @@ class OtpController extends GetxController {
   getPhoneNumber()async{
    SharedPreferences prefs = await SharedPreferences.getInstance();
    phoneNum= prefs.getString('UserPhoneNumber');
-   print(phoneNum);
    update();
 
 }
 
 otpSubmit(String verificationCode)async{
-  isLoading.value==true;
+  isLoading=true;
    final obj =OtpModel(code:verificationCode , phone: phoneNum.toString());
    try {
     final dio=Dio(BaseOptions(baseUrl: Url.baseUrl));
@@ -43,11 +43,14 @@ otpSubmit(String verificationCode)async{
     Get.offAllNamed(Paths.home);
     }else{
       if(response.statusCode==400){
+        removeLoading();
         ErrorDialoge.showSnakBar(response.data['detail']);
       }
+      removeLoading();
       ErrorDialoge.showSnakBar(response.data.toString());
     }
    }on DioError catch(e){
+    removeLoading();
     if (e.response!.statusCode==400) {
     ErrorDialoge.showSnakBar(e.response!.data['detail']);
       
@@ -55,17 +58,25 @@ otpSubmit(String verificationCode)async{
     log(e.toString());
    }
     catch (e) {
+    removeLoading();
      print(e);
    }
-   isLoading.value==false;
+  Get.back();
+
 }
 
 saveToSharedpref(OtpResponse value)async{
    SharedPreferences prefs = await SharedPreferences.getInstance();
-   await prefs.setString('UserPhoneNumber', value.phone);
-   await prefs.setString('UserName', '${value.firstname} ${value.lastname}');
-   await prefs.setString('UserEmail', value.email);
-   print(prefs.getString('UserName'));
+    prefs.setString('UserPhoneNumber', value.phone);
+    prefs.setString('UserName', '${value.firstname} ${value.lastname}');
+    prefs.setString('UserEmail', value.email);
+}
+
+removeLoading(){
+  if (isLoading==true) {
+    Get.back();
+    isLoading=false;
+  }
 }
 
 }

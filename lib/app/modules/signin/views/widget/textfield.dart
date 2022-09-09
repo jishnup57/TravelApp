@@ -23,7 +23,7 @@ class TextfieldWidget extends StatelessWidget {
         color: AppColor.kFormfieldInside,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-          color: AppColor.kFormfieldBorder
+          color: AppColor.kButtonColor
         )
       ),
       child: TextFormField(

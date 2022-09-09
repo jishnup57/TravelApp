@@ -17,56 +17,52 @@ class SignUpTextforms extends StatelessWidget {
   final bool obscureText;
   final double vertical;
   final TextEditingController controller;
-  final String? Function(String?)? validator;
+  final String? Function(String? )? validator;
   final TextInputType keytype;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: TextFormField(
-        validator: validator,     
-        controller: controller,
-        keyboardType: keytype,
-        style: TextStyle(
-          color: Colors.grey,
-          fontSize: 18,
-        ),
-        obscureText: obscureText,
-        decoration: InputDecoration(
-          fillColor: AppColor.kWhiteColor,
-          filled: true,
-          prefixIcon: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0),
-            child: Icon(
+      padding:const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      child: SizedBox(
+        child: TextFormField(
+          validator: validator,     
+          controller: controller,
+          keyboardType: keytype,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 18,
+          ),
+          obscureText: obscureText,
+          decoration: InputDecoration(
+            fillColor: AppColor.kWhiteColor,
+            filled: true,
+            prefixIcon: Icon(
               icon,
-              color: Colors.red,
+              color: Colors.black,
             ),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(
-              color: Colors.grey,
-              width: 2.0,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(
+                color: AppColor.kButtonColor,
+              ),
             ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(
-              color: Colors.teal,
-              width: 2.0,
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(
+                color: Color(0xff0088d1),
+              ),
             ),
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(
-              color: Colors.grey,
-              width: 2.0,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(
+                color: AppColor.kFormfieldBorder,
+              ),
             ),
-          ),
-          hintText: text,
-          hintStyle: TextStyle(
-            fontSize: 15,
-            color: Colors.grey,
+            hintText: text,
+            hintStyle: TextStyle(
+              fontSize: 16,
+              color: Colors.grey.withOpacity(.8),
+            ),
           ),
         ),
       ),

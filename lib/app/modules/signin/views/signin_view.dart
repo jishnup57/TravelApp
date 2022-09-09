@@ -24,77 +24,80 @@ class SigninView extends StatelessWidget {
             statusBarColor: AppColor.kWhiteColor,
             statusBarIconBrightness: Brightness.dark),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Image.asset(
-            'asset/image/signin.jpg',
-          ),
-          Form(
-            key: _controller.signUpKey,
-            child: Column(
-              children: [
-                TextfieldWidget(
-                  hint: 'Email',
-                  controller: SigninController.emailController,
-                  icon: Icons.alternate_email,
-                ),
-                GetBuilder<SigninController>(
-                  builder: (ctrl) => TextfieldWidget2(
-                    hint: 'Password',
-                    controller: SigninController.passwordController,
-                    icon: Icons.lock,
-                    obsecure: ctrl.secure,
+      body: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Image.asset(
+              'asset/image/signin.jpg',
+            ),
+            Form(
+              key: _controller.signUpKey,
+              child: Column(
+                children: [
+                  TextfieldWidget(
+                    hint: 'Email',
+                    controller: SigninController.emailController,
+                    icon: Icons.alternate_email,
                   ),
-                ),
-              ],
-            ),
-          ),
-          AppStyle.kHight8,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // Text('New to Aliga Register')
-                GestureDetector(
-                  onTap: () => Get.toNamed(Paths.signUp),
-                  child: RichText(
-                    text: TextSpan(
-                        text: 'New to Aliga ',
-                        style: AppStyle.kLoginIntermedText
-                            .copyWith(fontWeight: FontWeight.normal),
-                        children: [
-                          TextSpan(
-                              text: 'Register?',
-                              style: AppStyle.kLoginIntermedText)
-                        ]),
+                  GetBuilder<SigninController>(
+                    builder: (ctrl) => TextfieldWidget2(
+                      hint: 'Password',
+                      controller: SigninController.passwordController,
+                      icon: Icons.lock,
+                      obsecure: ctrl.secure,
+                    ),
                   ),
-                ),
-                Text('Forgot password?', style: AppStyle.kLoginIntermedText)
-              ],
+                ],
+              ),
             ),
-          ),
-          AppStyle.kHight20,
-          ElevatedButton(
-            onPressed: () {
-              _controller.onSubmit(context);
-            },
-            child: Text(
-              'Login',
-              style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: GoogleFonts.ubuntu().fontFamily),
+            AppStyle.kHight8,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Text('New to Aliga Register')
+                  GestureDetector(
+                    onTap: () => Get.toNamed(Paths.signUp),
+                    child: RichText(
+                      text: TextSpan(
+                          text: 'New to Aliga ',
+                          style: AppStyle.kLoginIntermedText
+                              .copyWith(fontWeight: FontWeight.normal),
+                          children: [
+                            TextSpan(
+                                text: 'Register?',
+                                style: AppStyle.kLoginIntermedText)
+                          ]),
+                    ),
+                  ),
+                  Text('Forgot password?', style: AppStyle.kLoginIntermedText)
+                ],
+              ),
             ),
-            style: ElevatedButton.styleFrom(
-                minimumSize: Size(width - 30, 50),
-                primary: Color(0xff0088d1),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                )),
-          )
-        ],
+            AppStyle.kHight20,
+            ElevatedButton(
+              onPressed: () {
+                _controller.onSubmit(context);
+              },
+              child: Text(
+                'Login',
+                style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: GoogleFonts.ubuntu().fontFamily),
+              ),
+              style: ElevatedButton.styleFrom(
+                  minimumSize: Size(width - 30, 50),
+                  primary: Color(0xff0088d1),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  )),
+            )
+          ],
+        ),
       ),
     );
   }

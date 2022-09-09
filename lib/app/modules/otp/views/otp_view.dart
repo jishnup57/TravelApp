@@ -40,14 +40,32 @@ class OtpView extends GetView<OtpController> {
             onCodeChanged: (String code) {},
             onSubmit: (String verificationCode) {
               controller.otpSubmit(verificationCode);
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content:   SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: Center(
+                              child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: Colors.red,
+                          )),
+                        ),
+                      insetPadding: EdgeInsets.symmetric(horizontal: 160),
+                      contentPadding: EdgeInsets.zero,
+                      clipBehavior: Clip.antiAliasWithSaveLayer, 
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(10.0))),
+                    
+                      
+                     
+                    );
+                  });
             },
           ),
-          AppStyle.kHight10,
-          Obx(() =>  Visibility(
-              visible: controller.isLoading.value,
-              child: CircularProgressIndicator(strokeWidth: 2, ),
-            ),
-          )
         ],
       ),
     );
