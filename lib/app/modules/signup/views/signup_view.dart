@@ -1,27 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_aliga/app/modules/signup/controllers/signup_controller.dart';
 import 'package:travel_aliga/app/modules/signup/views/widget/signupform.dart';
+import 'package:travel_aliga/app/modules/widgets/main_app_bar.dart';
 import 'package:travel_aliga/app/utils/colors.dart';
 import 'package:travel_aliga/app/utils/style.dart';
 
 class SignupView extends GetView<SignupController> {
-
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: AppColor.kWhiteColor,
-      appBar: AppBar(
-        toolbarHeight: 0,
-        elevation: 0,
-        systemOverlayStyle: const SystemUiOverlayStyle(
-            statusBarColor: AppColor.kWhiteColor,
-            statusBarIconBrightness: Brightness.dark),
+      appBar: PreferredSize(
+        preferredSize: Size(double.infinity, 0),
+        child: SystemAppBar(
+          appBarColor: AppColor.kWhiteColor,
+        ),
       ),
       body: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -92,7 +90,6 @@ class SignupView extends GetView<SignupController> {
                 ],
               ),
             ),
-          
           ],
         ),
       ),
@@ -117,7 +114,7 @@ class SignupView extends GetView<SignupController> {
                   ),
             style: ElevatedButton.styleFrom(
                 minimumSize: Size(width - 20, 50),
-                primary:  Color(0xff0088d1),
+                primary: Color(0xff0088d1),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 )),

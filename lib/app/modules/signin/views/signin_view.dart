@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_aliga/app/modules/signin/views/widget/textfield.dart';
 import 'package:travel_aliga/app/modules/signin/views/widget/textfieldtwwo.dart';
+import 'package:travel_aliga/app/modules/widgets/main_app_bar.dart';
 import 'package:travel_aliga/app/routes/app_pages.dart';
 import 'package:travel_aliga/app/utils/colors.dart';
 import 'package:travel_aliga/app/utils/style.dart';
@@ -17,13 +17,9 @@ class SigninView extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColor.kWhiteColor,
-      appBar: AppBar(
-        toolbarHeight: 0,
-        elevation: 0,
-        systemOverlayStyle: const SystemUiOverlayStyle(
-            statusBarColor: AppColor.kWhiteColor,
-            statusBarIconBrightness: Brightness.dark),
-      ),
+      appBar: PreferredSize(
+        preferredSize: Size(double.infinity, 0),
+        child: SystemAppBar(appBarColor: AppColor.kWhiteColor,),),
       body: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Column(
