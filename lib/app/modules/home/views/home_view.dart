@@ -26,6 +26,7 @@ class HomeView extends GetView<HomeController> {
               child: const Tabbs(tabWidget: TabContentHome()),
             ),
              const TrendingWidget(title: 'Popular'),
+              AppStyle.kHight8,
             Text(
               "Explore more",
               style: AppStyle.kIntermediateText.copyWith(color: Colors.black),
