@@ -4,7 +4,6 @@ import 'package:travel_aliga/app/modules/Favorate/bindings/favorate_binding.dart
 import 'package:travel_aliga/app/modules/Favorate/views/favorate_view.dart';
 import 'package:travel_aliga/app/modules/Settings/bindings/settings_binding.dart';
 import 'package:travel_aliga/app/modules/Settings/views/settings_view.dart';
-import 'package:travel_aliga/app/modules/home/bindings/home_binding.dart';
 import 'package:travel_aliga/app/modules/home/views/home_view.dart';
 import 'package:travel_aliga/app/modules/mainscreen/bindings/mainscreen_binding.dart';
 import 'package:travel_aliga/app/modules/mainscreen/views/mainscreen_view.dart';
@@ -28,7 +27,6 @@ class AppPages {
     GetPage(
       name: Paths.home,
       page: () => HomeView(),
-      binding: HomeBinding(),
     ),
     GetPage(
       name: Paths.signIn,

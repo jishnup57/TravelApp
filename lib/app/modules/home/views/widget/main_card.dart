@@ -14,24 +14,24 @@ class MainCard extends StatelessWidget {
   final String imgtitle;
   @override
   Widget build(BuildContext context) {
-    double width=MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.only(right: 8.0),
       child: Card(
         elevation: 4,
         shadowColor: AppColor.kPrimaryColor,
         shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
-      ),
+          borderRadius: BorderRadius.circular(20.0),
+        ),
         child: Container(
-          width: width*.42,
-          decoration: CommonWidget.imageShow(url: imgUrl,radius: 20),
+          width: width * .42,
+          decoration: CommonImageWidget.imageShow(url: imgUrl, radius: 20),
           child: Column(
             children: [
-             AppStyle.kHight8,
+              AppStyle.kHight8,
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children:  [
+                children: [
                   Padding(
                     padding: const EdgeInsets.only(right: 5),
                     child: CircleAvatar(
@@ -51,6 +51,7 @@ class MainCard extends StatelessWidget {
                   AppStyle.kWidth,
                   RatingBar(
                       initialRating: 3,
+                      ignoreGestures: true,
                       direction: Axis.horizontal,
                       allowHalfRating: true,
                       itemCount: 5,
@@ -68,15 +69,19 @@ class MainCard extends StatelessWidget {
                       onRatingUpdate: (value) {}),
                 ],
               ),
-               Row(
-                 children: [
+            
+              Row(
+                children: [
                   AppStyle.kWidth,
-                   Text(
-                    imgtitle,
-                    style: AppStyle.kCardTextStyle,
+                  Expanded(
+                    child: Text(
+                      imgtitle,
+                      style: AppStyle.kCardTextStyle,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
               ),
-                 ],
-               ),
               const SizedBox(
                 height: 20,
               )

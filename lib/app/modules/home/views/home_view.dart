@@ -12,6 +12,9 @@ import 'package:travel_aliga/app/utils/style.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
+
+ final HomeController controllerHome = Get.put(HomeController.instance);
+
   @override
  Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -23,7 +26,7 @@ class HomeView extends GetView<HomeController> {
             const MainAppBar(title: 'Explore',),
             LimitedBox(
               maxHeight: height * .4,
-              child: const Tabbs(tabWidget: TabContentHome()),
+              child:  Tabbs(tabWidget: TabContentHome()),
             ),
              const TrendingWidget(title: 'Popular'),
               AppStyle.kHight8,
