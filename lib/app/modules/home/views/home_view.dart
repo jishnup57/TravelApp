@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -8,10 +9,11 @@ import 'package:travel_aliga/app/modules/home/views/widget/trending_widget.dart'
 import 'package:travel_aliga/app/modules/widgets/appbar.dart';
 import 'package:travel_aliga/app/utils/colors.dart';
 import 'package:travel_aliga/app/utils/style.dart';
+import 'package:travel_aliga/app/utils/urls.dart';
 
 import '../controllers/home_controller.dart';
 
-class HomeView extends GetView<HomeController> {
+class HomeView extends StatelessWidget {
 
  final HomeController controllerHome = Get.put(HomeController.instance);
 
@@ -39,14 +41,19 @@ class HomeView extends GetView<HomeController> {
               height: height * .1,
               decoration: BoxDecoration(
                   color: AppColor.kWhiteColor, borderRadius: BorderRadius.circular(6)),
-              child: ListView.builder(
-                itemBuilder: (context, index) {
-                  final img = HomeController.newList[index];
-                  return ExploreMoreCard(img: img);
-                },
-                itemCount: HomeController.newList.length,
-                scrollDirection: Axis.horizontal,
-                physics: const BouncingScrollPhysics(),
+              child: GetBuilder<HomeController>(builder: (controllerHome) {
+                return ListView.builder(
+                  itemBuilder: (context, index) {
+                final list = controllerHome.allCategoryList[index];
+               
+
+                    return ExploreMoreCard(img: "${Url.baseUrl}${list.image}");
+                  },
+                  itemCount: HomeController.instance.allCategoryList.length,
+                  scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
+                );
+              },
               ),
             ),
             AppStyle.kHight8,

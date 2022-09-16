@@ -44,22 +44,22 @@ class AppPages {
       binding: OtpBinding(),
     ),
     GetPage(
-      name: Routes.MAINSCREEN,
+      name: Routes.mainScreen,
       page: () => MainscreenView(),
       binding: MainscreenBinding(),
     ),
     GetPage(
-      name: Routes.SEARCH,
+      name: Routes.search,
       page: () => SearchView(),
       binding: SearchBinding(),
     ),
     GetPage(
-      name: Routes.FAVORATE,
+      name: Routes.favorate,
       page: () => FavorateView(),
       binding: FavorateBinding(),
     ),
     GetPage(
-      name: Routes.SETTINGS,
+      name: Routes.settings,
       page: () => SettingsView(),
       binding: SettingsBinding(),
     ),

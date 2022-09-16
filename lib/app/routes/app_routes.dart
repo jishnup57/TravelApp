@@ -8,10 +8,10 @@ abstract class Routes {
   static const signIn = Paths.signIn;
   static const signUp = Paths.signUp;
   static const otp = Paths.otp;
-  static const MAINSCREEN = '/mainscreen';
-  static const SEARCH = '/search';
-  static const FAVORATE = '/favorate';
-  static const SETTINGS = '/settings';
+  static const mainScreen = '/mainscreen';
+  static const search = '/search';
+  static const favorate = '/favorate';
+  static const settings = '/settings';
 }
 
 abstract class Paths {

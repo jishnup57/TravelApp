@@ -4,4 +4,5 @@ class Url{
   static String signup = 'account/register/';
   static String verify = 'account/verify/';
   static String allPakages = 'packages/';
+  static String allCategory = 'category/';
 }

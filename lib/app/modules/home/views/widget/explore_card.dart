@@ -20,7 +20,7 @@ class ExploreMoreCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
           image: DecorationImage(
-              image: AssetImage(img), fit: BoxFit.fitHeight),
+              image: NetworkImage(img), fit: BoxFit.fitHeight),
         ),
       ),
     );

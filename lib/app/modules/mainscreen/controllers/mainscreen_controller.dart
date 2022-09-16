@@ -25,5 +25,6 @@ class MainscreenController extends GetxController {
     super.onInit();
     log('initstae called');
     HomeController.instance.fetchAllPakages();
+    HomeController.instance.featchAllCategories();
   }
 }
