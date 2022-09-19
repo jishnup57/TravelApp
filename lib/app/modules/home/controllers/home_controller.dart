@@ -48,6 +48,7 @@ class HomeController extends GetxController {
 
   List<AllCategory> allCategoryList = [];
   featchAllCategories()async{
+    
       allCategoryList.clear();
       try {
         final response = await dio.get(Url.allCategory);
