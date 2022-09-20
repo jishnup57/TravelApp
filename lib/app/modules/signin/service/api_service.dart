@@ -1,8 +1,6 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:travel_aliga/app/modules/signin/model/signin_model.dart';
 import 'package:travel_aliga/app/modules/signin/model/token_model.dart';
 import 'package:travel_aliga/app/utils/api_helper/internet_cheker.dart';
@@ -26,22 +24,20 @@ class Api {
     try {
       final result = await dio.post(Url.login, data: obj.toJson());
       if (result.statusCode! >= 200 && result.statusCode! <= 299) {
-        log(result.data.toString());
         return TokenModel.fromJson(result.data);
       } else {
-        return TokenModel.fromJson(result.data);
+        return TokenModel(message: "Some unknown error occured");
       }
-    } on SocketException catch (e) {
-      log('...............Socket exception....................');
-      debugPrint(e.toString());
-      return null;
     } on DioError catch (e) {
       log('Dioerror');
+      if(e.response!.data == null){
+        return TokenModel(message: 'Something went wrong!');
+      }
       log(e.response!.data.toString());
-      return TokenModel.fromJson(e.response!.data);
-    } catch (_) {
-      log('Dioerror');
-      return TokenModel(message: 'Catch error');
+      return TokenModel(message: e.response!.data["detail"]);
+    } catch (e) {
+      log('catch');
+      return TokenModel(message:e.toString());
     }
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -78,12 +79,14 @@ class SigninView extends StatelessWidget {
               onPressed: () {
                 _controller.onSubmit(context);
               },
-              child: Text(
-                'Login',
-                style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: GoogleFonts.ubuntu().fontFamily),
+              child: Obx ( ()=>_controller.isLoading == false?
+                 Text(
+                  'Login',
+                  style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: GoogleFonts.ubuntu().fontFamily),
+                ) : CupertinoActivityIndicator(),
               ),
               style: ElevatedButton.styleFrom(
                   minimumSize: Size(width - 30, 50),

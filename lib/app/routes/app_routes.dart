@@ -8,10 +8,10 @@ abstract class Routes {
   static const signIn = Paths.signIn;
   static const signUp = Paths.signUp;
   static const otp = Paths.otp;
-  static const mainScreen = '/mainscreen';
-  static const search = '/search';
-  static const favorate = '/favorate';
-  static const settings = '/settings';
+  static const mainScreen = Paths.mainScreen;
+  static const search = Paths.search;
+  static const favorate = Paths.favorate;
+  static const settings = Paths.settings;
 }
 
 abstract class Paths {
@@ -19,4 +19,8 @@ abstract class Paths {
   static const signIn = '/signin';
   static const signUp = '/signup';
   static const otp = '/otp';
+  static const mainScreen = '/mainscreen';
+  static const search = '/search';
+  static const favorate = '/favorate';
+  static const settings = '/settings';
 }

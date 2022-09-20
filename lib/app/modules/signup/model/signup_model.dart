@@ -1,17 +1,19 @@
 class SignUpModel {
-  String firstName;
-  String lastName;
-  String phone;
-  String email;
-  String password;
-  String confirmPassword;
+  String? firstName;
+  String? lastName;
+  String? phone;
+  String? email;
+  String? password;
+  String? confirmPassword;
+  String? message;
   SignUpModel({
-    required this.firstName,
-    required this.lastName,
-    required this.email,
-    required this.phone,
-    required this.password,
-    required this.confirmPassword,
+     this.firstName,
+     this.lastName,
+     this.email,
+     this.phone,
+     this.password,
+     this.confirmPassword,
+     this.message,
   });
 
   Map<String,dynamic>toJson()=>{
@@ -22,4 +24,12 @@ class SignUpModel {
     "password":password,
     "confirm_password":confirmPassword,
   };
+
+  factory SignUpModel.fromJson(Map<String,dynamic> json)=>SignUpModel(
+    firstName : json['first_name']??'',
+    lastName : json['last_name']??'',
+    email : json['email']??'',
+    phone : json['phone']??'' ,
+    message: json['detail']??''
+  );
 }
