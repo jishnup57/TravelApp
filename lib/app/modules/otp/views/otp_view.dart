@@ -28,11 +28,9 @@ class OtpView extends GetView<OtpController> {
             'We have send the verification code to',
             style: AppStyle.kLoginIntermedText.copyWith(color: Colors.grey),
           ),
-          GetBuilder<OtpController>(
-              builder: (controller) => Text(
-                    controller.phoneNum.toString(),
+          Text(Get.arguments.toString(),
                     style: AppStyle.kLoginIntermedText,
-                  )),
+                  ),
           OtpTextField(
             numberOfFields: 6,
             borderColor: AppColor.kPrimaryColor,

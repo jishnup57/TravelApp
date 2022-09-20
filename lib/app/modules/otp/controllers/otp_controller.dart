@@ -15,24 +15,15 @@ class OtpController extends GetxController {
  String? phoneNum;
  bool isLoading=false;
 
+  final phone = Get.arguments.toString();
 
 
-  @override
-  void onInit() {
-    super.onInit();
-    getPhoneNumber();
-  }
 
-  getPhoneNumber()async{
-   SharedPreferences prefs = await SharedPreferences.getInstance();
-   phoneNum= prefs.getString('UserPhoneNumber');
-   update();
 
-}
 
 otpSubmit(String verificationCode)async{
   isLoading=true;
-   final obj =OtpModel(code:verificationCode , phone: phoneNum.toString());
+   final obj =OtpModel(code:verificationCode , phone:phone);
    try {
     final dio=Dio(BaseOptions(baseUrl: Url.baseUrl));
     final response=await dio.post(Url.verify,data: obj.toJson());

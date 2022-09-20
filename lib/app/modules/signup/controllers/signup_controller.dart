@@ -3,11 +3,11 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:travel_aliga/app/modules/signup/api_service/api_service.dart';
 import 'package:travel_aliga/app/modules/signup/model/signup_model.dart';
 import 'package:travel_aliga/app/routes/app_pages.dart';
 import 'package:travel_aliga/app/utils/error_dialog.dart';
 import 'package:travel_aliga/app/utils/urls.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SignupController extends GetxController {
   final signUpKey = GlobalKey<FormState>();
@@ -36,32 +36,24 @@ class SignupController extends GetxController {
         password: passwordControlleer.text.trim(),
         confirmPassword: confirmPasswordControlleer.text.trim(),
       );
-      addintoSharedPref(obj.phone);
-      try {
-        final response = await dio.post(Url.signup, data: obj.toJson());
-        if (response.statusCode! >= 200 && response.statusCode! <= 299) {
-          print(response.data);
-          Get.toNamed(Paths.otp);
-        } else {
-          ErrorDialoge.showSnakBar(response.statusCode.toString());
-        }
-      } on DioError catch (e) {
-        ErrorDialoge.showSnakBar(e.response!.data['detail']);
 
-        log(e.response!.data.toString());
-      } catch (e) {
-        print(e.toString());
-      }
+      final response = await ApiSignUp().registerUser(obj);
       isLoading.value = false;
+      if(response != null){
+          if(response.email != null){
+            log(response.toJson().toString());
+            Get.toNamed(Paths.otp,arguments: response.phone.toString());
+          }else{
+            ErrorDialoge.showSnakBar(response.message.toString());
+          }
+      }else{
+         ErrorDialoge.showSnakBar("No network");
+      }
     }
   }
 
-  addintoSharedPref(String value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('UserPhoneNumber', value);
-  }
 
-  List<String> validatorMessage=['First Name','Last Name','Email','Phone Number','Password','Confirm Password'];
+
 
   String? firstNameValidator(String? fieldContent,) {
     if (fieldContent!.isEmpty) {

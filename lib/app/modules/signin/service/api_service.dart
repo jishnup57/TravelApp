@@ -29,7 +29,7 @@ class Api {
         return TokenModel(message: "Some unknown error occured");
       }
     } on DioError catch (e) {
-      log('Dioerror');
+     
       if(e.response!.data == null){
         return TokenModel(message: 'Something went wrong!');
       }
