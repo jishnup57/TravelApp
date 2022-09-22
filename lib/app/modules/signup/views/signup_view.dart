@@ -9,7 +9,8 @@ import 'package:travel_aliga/app/modules/widgets/main_app_bar.dart';
 import 'package:travel_aliga/app/utils/colors.dart';
 import 'package:travel_aliga/app/utils/style.dart';
 
-class SignupView extends GetView<SignupController> {
+class SignupView extends StatelessWidget {
+  final controller = Get.put(SignupController());
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;

@@ -18,7 +18,9 @@ dependencies:
   google_fonts: ^3.0.1
   iconify_flutter: ^0.0.4
   internet_connection_checker: ^0.0.1+4
+  lottie: ^1.4.2
   shared_preferences: ^2.0.15
+  shimmer: ^2.0.0
   tab_indicator_styler: ^2.0.0
 
 dev_dependencies:
@@ -32,3 +34,4 @@ flutter:
 
   assets:
     - asset/image/
+    - asset/no-connection-internet.json

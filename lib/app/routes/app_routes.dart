@@ -12,10 +12,12 @@ abstract class Routes {
   static const search = Paths.search;
   static const favorate = Paths.favorate;
   static const settings = Paths.settings;
+  static const splash = Paths.splash;
 }
 
 abstract class Paths {
   static const home = '/home';
+  static const splash = '/splash';
   static const signIn = '/signin';
   static const signUp = '/signup';
   static const otp = '/otp';

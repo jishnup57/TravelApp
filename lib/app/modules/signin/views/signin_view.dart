@@ -11,7 +11,7 @@ import 'package:travel_aliga/app/utils/style.dart';
 import '../controllers/signin_controller.dart';
 
 class SigninView extends StatelessWidget {
-  final SigninController _controller = Get.put(SigninController());
+  final SigninController controller = Get.put(SigninController());
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
@@ -30,7 +30,7 @@ class SigninView extends StatelessWidget {
               'asset/image/signin.jpg',
             ),
             Form(
-              key: _controller.signUpKey,
+              key: controller.signUpKey,
               child: Column(
                 children: [
                   TextfieldWidget(
@@ -77,9 +77,9 @@ class SigninView extends StatelessWidget {
             AppStyle.kHight20,
             ElevatedButton(
               onPressed: () {
-                _controller.onSubmit(context);
+                controller.onSubmit(context);
               },
-              child: Obx ( ()=>_controller.isLoading == false?
+              child: Obx ( ()=>controller.isLoading == false?
                  Text(
                   'Login',
                   style: TextStyle(

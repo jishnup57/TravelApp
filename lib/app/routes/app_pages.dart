@@ -11,19 +11,22 @@ import 'package:travel_aliga/app/modules/otp/bindings/otp_binding.dart';
 import 'package:travel_aliga/app/modules/otp/views/otp_view.dart';
 import 'package:travel_aliga/app/modules/search/bindings/search_binding.dart';
 import 'package:travel_aliga/app/modules/search/views/search_view.dart';
-import 'package:travel_aliga/app/modules/signin/bindings/signin_binding.dart';
 import 'package:travel_aliga/app/modules/signin/views/signin_view.dart';
-import 'package:travel_aliga/app/modules/signup/bindings/signup_binding.dart';
 import 'package:travel_aliga/app/modules/signup/views/signup_view.dart';
+import 'package:travel_aliga/app/modules/splash/view/splash_view.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const initial = Routes.signIn;
+  static const initial = Routes.splash;
 
   static final routes = [
+    GetPage(
+      name: Paths.splash,
+      page: () => SplashView(),
+    ),
     GetPage(
       name: Paths.home,
       page: () => HomeView(),
@@ -31,12 +34,11 @@ class AppPages {
     GetPage(
       name: Paths.signIn,
       page: () => SigninView(),
-      binding: SigninBinding(),
     ),
     GetPage(
       name: Paths.signUp,
       page: () => SignupView(),
-      binding: SignupBinding(),
+   
     ),
     GetPage(
       name: Paths.otp,

@@ -67,10 +67,7 @@ class SigninController extends GetxController {
     SharedPreferences pref =await SharedPreferences.getInstance();
     pref.setBool("isLogined", true);
   }
-  Future<bool> getLogined()async{
-    SharedPreferences pref =await SharedPreferences.getInstance();
-    return pref.getBool("isLogined")?? false;
-  }
+
 }
 /*
 

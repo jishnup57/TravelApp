@@ -1,22 +1,24 @@
 
 class AllPakages {
     AllPakages({
-        required this.count,
+         this.count,
          this.next,
          this.previous,
-        required this.results,
+         this.results,
+         this.message,
     });
 
-    int count;
+    int? count;
     String? next;
     String? previous;
-    List<Result> results;
+    List<Result>? results;
+    String? message;
 
     factory AllPakages.fromJson(Map<String, dynamic> json) => AllPakages(
-        count: json["count"],
+        count: json["count"] ?? 0,
         next: json["next"]??'',
         previous: json["previous"]??'',
-        results: List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
+        results: json["results"] == null ? null: List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
     );
 
 

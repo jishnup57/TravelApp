@@ -1,3 +1,15 @@
+
+
+class Categories {
+  List<AllCategory>? listAllcategories;
+  String? message;
+  Categories({
+    this.listAllcategories,
+    this.message,
+  });
+  
+}
+
 class AllCategory {
   AllCategory(
       {required this.id,
@@ -19,3 +31,4 @@ class AllCategory {
         description: json['description'] ?? '',
       );
 }
+

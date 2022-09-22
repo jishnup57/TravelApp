@@ -11,7 +11,6 @@ void main() {
       debugShowCheckedModeBanner: false,
       initialRoute: AppPages.initial,
       getPages: AppPages.routes,
-      //  home: MainscreenView(),
     ),
   );
 }

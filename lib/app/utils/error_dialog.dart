@@ -1,14 +1,15 @@
 
-import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
+import 'package:travel_aliga/app/routes/app_pages.dart';
 import 'package:travel_aliga/app/utils/style.dart';
 class ErrorDialoge{
 
 static errorDialog(BuildContext context, String error ,{String statusCode='Invalied'}) {
-  if (!Platform.isIOS) {
+
     showCupertinoDialog(
       context: context,
       builder: (context) {
@@ -18,29 +19,13 @@ static errorDialog(BuildContext context, String error ,{String statusCode='Inval
           actions: [
             CupertinoDialogAction(
               child: Text('OK'),
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => Get.offAllNamed(Paths.signIn),
             ),
           ],
         );
       },
     );
-  } else {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(statusCode),
-          content: Text(error),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text('OK'),
-            ),
-          ],
-        );
-      },
-    );
-  }
+  
 }
 
 
@@ -55,6 +40,24 @@ static errorDialog(BuildContext context, String error ,{String statusCode='Inval
       borderRadius: 10,
       margin: EdgeInsets.all( 10),
       colorText: Colors.white,
+    );
+  }
+
+  static noNetworkAlert(BuildContext context){
+       showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.zero,
+          title: Center(child: Text('No Internet',style: TextStyle(color: Colors.black.withOpacity(0.6)),)),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Lottie.asset("asset/no-connection-internet.json"),
+            ],
+          ),
+        );
+      },
     );
   }
 
