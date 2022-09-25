@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:travel_aliga/app/modules/search/model/searchmodel.dart';
 import 'package:travel_aliga/app/modules/widgets/image_show.dart';
 import 'package:travel_aliga/app/utils/colors.dart';
 import 'package:travel_aliga/app/utils/style.dart';
 
 
+
 class CardSearch extends StatelessWidget {
   const CardSearch({
     Key? key,
+    required this.item,
   }) : super(key: key);
-
+final AllList item;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -22,9 +25,9 @@ class CardSearch extends StatelessWidget {
           Container(
             margin:const EdgeInsets.all(10) ,
             height: 140,
-            decoration: CommonWidget.imageShow(url: 'asset/image/mosque.jpg'),
+            decoration:CommonImageWidget.imageShow(url: item.imagesMain)
           ),
-          Text('Mosque',style: AppStyle.kCardTextStyle.copyWith(color: AppColor.kBlackColor,fontSize: 16),),
+          Text(item.packageName,style: AppStyle.kCardTextStyle.copyWith(color: AppColor.kBlackColor,fontSize: 16),),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children:  [

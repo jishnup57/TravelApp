@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:travel_aliga/app/modules/search/views/widget/search_card.dart';
+import 'package:travel_aliga/app/modules/search/views/widget/search_idel_widget.dart';
 import 'package:travel_aliga/app/utils/colors.dart';
 
 import '../../widgets/appbar.dart';
@@ -10,7 +11,7 @@ import '../controllers/search_controller.dart';
 class SearchView extends StatelessWidget {
   final controller = Get.put(SearchController());
   @override
-   Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -44,10 +45,10 @@ class SearchView extends StatelessWidget {
                       child: Center(
                         child: TextFormField(
                           onChanged: (value) {
-                            if(value.isEmpty){
+                            if (value.isEmpty) {
                               return;
                             }
-                            
+
                             controller.onSearchAction(value);
                           },
                           textAlign: TextAlign.center,
@@ -67,8 +68,7 @@ class SearchView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: IconButton(
-                        onPressed: () {
-                        },
+                        onPressed: () {},
                         icon: const Image(
                           image:
                               AssetImage('asset/image/icons-google-maps.png'),
@@ -84,24 +84,33 @@ class SearchView extends StatelessWidget {
               ),
             ),
           ),
-          Obx(() => 
-            Visibility(
-              visible:controller.isLoading.value == false ,
-              child: SliverGrid(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 8,
-                  childAspectRatio: 0.85,
-                ),
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    return const CardSearch();
-                  },
-                  childCount: 20,
-                ),
-              ),
-            ),
+          Obx(
+            () {
+              if (controller.searchResultList.isEmpty) {
+                return 
+                   
+                  SearchIdleWidget();
+               
+              } else {
+                return SliverGrid(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 8,
+                    childAspectRatio: 0.85,
+                  ),
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      final item = controller.searchResultList[index];
+                      return CardSearch(
+                        item: item,
+                      );
+                    },
+                    childCount: controller.searchResultList.length,
+                  ),
+                );
+              }
+            },
           )
         ],
       ),

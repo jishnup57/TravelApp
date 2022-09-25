@@ -6,6 +6,7 @@ import 'package:travel_aliga/app/modules/Favorate/views/favorate_view.dart';
 import 'package:travel_aliga/app/modules/Settings/views/settings_view.dart';
 import 'package:travel_aliga/app/modules/home/controllers/home_controller.dart';
 import 'package:travel_aliga/app/modules/home/views/home_view.dart';
+import 'package:travel_aliga/app/modules/search/controllers/search_controller.dart';
 import 'package:travel_aliga/app/modules/search/views/search_view.dart';
 
 class MainscreenController extends GetxController {
@@ -19,6 +20,9 @@ class MainscreenController extends GetxController {
   void onItemTapped(int index) {
     selectedIndex = index;
     update();
+    if(index !=  1){
+      SearchController.topSearch.value = true;
+    }
   }
     @override
   void onInit() {
