@@ -11,8 +11,8 @@ import 'package:travel_aliga/app/utils/error_dialog.dart';
 
 class SigninController extends GetxController {
   final signUpKey = GlobalKey<FormState>();
-  static TextEditingController emailController = TextEditingController();
-  static TextEditingController passwordController = TextEditingController();
+   TextEditingController emailController = TextEditingController();
+   TextEditingController passwordController = TextEditingController();
   var isLoading = false.obs;
   Future<void> onSubmit(BuildContext ctx) async {
     isLoading.value =true;

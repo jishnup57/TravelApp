@@ -9,12 +9,10 @@ import 'package:travel_aliga/app/modules/mainscreen/bindings/mainscreen_binding.
 import 'package:travel_aliga/app/modules/mainscreen/views/mainscreen_view.dart';
 import 'package:travel_aliga/app/modules/otp/bindings/otp_binding.dart';
 import 'package:travel_aliga/app/modules/otp/views/otp_view.dart';
-import 'package:travel_aliga/app/modules/search/bindings/search_binding.dart';
 import 'package:travel_aliga/app/modules/search/views/search_view.dart';
 import 'package:travel_aliga/app/modules/signin/views/signin_view.dart';
 import 'package:travel_aliga/app/modules/signup/views/signup_view.dart';
 import 'package:travel_aliga/app/modules/splash/view/splash_view.dart';
-
 part 'app_routes.dart';
 
 class AppPages {
@@ -53,7 +51,7 @@ class AppPages {
     GetPage(
       name: Routes.search,
       page: () => SearchView(),
-      binding: SearchBinding(),
+
     ),
     GetPage(
       name: Routes.favorate,

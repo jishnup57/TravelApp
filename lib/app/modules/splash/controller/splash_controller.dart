@@ -3,8 +3,7 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:travel_aliga/app/modules/mainscreen/views/mainscreen_view.dart';
-import 'package:travel_aliga/app/modules/signin/views/signin_view.dart';
+import 'package:travel_aliga/app/routes/app_pages.dart';
 
 class SplashController extends GetxController {
   @override
@@ -20,9 +19,9 @@ class SplashController extends GetxController {
     log(isLogined.toString());
     Timer(Duration(seconds: 3), () {
       if (isLogined) {
-        Get.off(MainscreenView());
+        Get.offNamed(Paths.mainScreen);
       } else {
-        Get.off(SigninView());
+        Get.offNamed(Paths.signIn);
       }
     });
   }

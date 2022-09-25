@@ -7,12 +7,12 @@ import 'package:travel_aliga/app/utils/colors.dart';
 class TextfieldWidget2 extends StatelessWidget {
   final String hint;
   final IconData icon;
-  final TextEditingController controller;
+  final TextEditingController textcontroller;
   final TextInputType keyType;
   final bool obsecure;
   const TextfieldWidget2({
     required this.hint,
-    required this.controller,
+    required this.textcontroller,
     required this.icon,
     required this.obsecure,
     this.keyType=TextInputType.emailAddress,
@@ -31,7 +31,7 @@ class TextfieldWidget2 extends StatelessWidget {
         )
       ),
       child: TextFormField(
-        controller: controller,
+        controller: textcontroller,
         keyboardType: keyType,
         obscureText: obsecure,
         style: const TextStyle(

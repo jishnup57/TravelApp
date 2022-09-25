@@ -5,16 +5,15 @@ import 'package:travel_aliga/app/utils/colors.dart';
 class TextfieldWidget extends StatelessWidget {
   final String hint;
   final IconData icon;
-  final TextEditingController controller;
+  final TextEditingController textcontroller;
   final TextInputType keyType;
   const TextfieldWidget({
     required this.hint,
-    required this.controller,
+    required this.textcontroller,
     required this.icon,
     this.keyType=TextInputType.emailAddress,
     Key? key,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,7 +26,7 @@ class TextfieldWidget extends StatelessWidget {
         )
       ),
       child: TextFormField(
-        controller: controller,
+        controller: textcontroller,
            validator: (value) {
           if (value!.isEmpty) {
             return 'Please fill this field';

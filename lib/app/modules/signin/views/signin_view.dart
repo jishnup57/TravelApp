@@ -11,7 +11,7 @@ import 'package:travel_aliga/app/utils/style.dart';
 import '../controllers/signin_controller.dart';
 
 class SigninView extends StatelessWidget {
-  final SigninController controller = Get.put(SigninController());
+ final SigninController controller = Get.put(SigninController());
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
@@ -35,15 +35,16 @@ class SigninView extends StatelessWidget {
                 children: [
                   TextfieldWidget(
                     hint: 'Email',
-                    controller: SigninController.emailController,
+                    textcontroller: controller.emailController,
                     icon: Icons.alternate_email,
                   ),
                   GetBuilder<SigninController>(
-                    builder: (ctrl) => TextfieldWidget2(
+                   // init:SigninController() ,
+                    builder: (controller) => TextfieldWidget2(
                       hint: 'Password',
-                      controller: SigninController.passwordController,
+                      textcontroller:controller.passwordController,
                       icon: Icons.lock,
-                      obsecure: ctrl.secure,
+                      obsecure: controller.secure,
                     ),
                   ),
                 ],
@@ -79,7 +80,7 @@ class SigninView extends StatelessWidget {
               onPressed: () {
                 controller.onSubmit(context);
               },
-              child: Obx ( ()=>controller.isLoading == false?
+              child: Obx ( ()=>controller.isLoading.isFalse?
                  Text(
                   'Login',
                   style: TextStyle(
