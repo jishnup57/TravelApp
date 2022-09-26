@@ -87,10 +87,7 @@ class SearchView extends StatelessWidget {
           Obx(
             () {
               if (controller.searchResultList.isEmpty) {
-                return 
-                   
-                  SearchIdleWidget();
-               
+                return SearchIdleWidget();
               } else {
                 return SliverGrid(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

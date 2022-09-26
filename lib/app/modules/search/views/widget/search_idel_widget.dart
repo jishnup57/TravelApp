@@ -50,20 +50,3 @@ class SearchIdleWidget extends StatelessWidget {
     }
   }
 }
-
-// ListView(
-//         shrinkWrap = true,
-//         children = [
-//           Text(
-//             'Top Search',
-//             style: AppStyle.kIntermediateText,
-//           ),
-//           ListView.builder(
-//             shrinkWrap: true,
-//             physics: NeverScrollableScrollPhysics(),
-//             itemBuilder: (context, index) {
-//               return CardFavorite();
-//             },
-//           )
-//         ],
-//       )

@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 
 import 'package:travel_aliga/app/modules/Favorate/bindings/favorate_binding.dart';
 import 'package:travel_aliga/app/modules/Favorate/views/favorate_view.dart';
-import 'package:travel_aliga/app/modules/Settings/bindings/settings_binding.dart';
 import 'package:travel_aliga/app/modules/Settings/views/settings_view.dart';
 import 'package:travel_aliga/app/modules/home/views/home_view.dart';
 import 'package:travel_aliga/app/modules/mainscreen/bindings/mainscreen_binding.dart';
@@ -61,7 +60,6 @@ class AppPages {
     GetPage(
       name: Routes.settings,
       page: () => SettingsView(),
-      binding: SettingsBinding(),
     ),
   ];
 }
