@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ant_design.dart';
 import 'package:iconify_flutter/icons/bi.dart';
+import 'package:travel_aliga/app/modules/Settings/controllers/settings_controller.dart';
 import 'package:travel_aliga/app/utils/colors.dart';
 import 'package:travel_aliga/app/utils/style.dart';
 
@@ -44,15 +45,20 @@ class MainAppBar extends StatelessWidget {
                   ),
                 )
               : isSettings==false? IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                   
+                  },
                   icon: const Iconify(
                     Bi.filter_square,
                     size: 28,
                   ),
-                ): CircleAvatar(
-                  radius: height * .03,
-                  backgroundColor: AppColor.kWhiteColor,
-                  child:  const Iconify(AntDesign.logout_outline,color: Colors.red,size: 30,),
+                ): GestureDetector(
+                  onTap: ()=>SettingsController.userLogout() ,
+                  child: CircleAvatar(
+                    radius: height * .03,
+                    backgroundColor: AppColor.kWhiteColor,
+                    child:  const Iconify(AntDesign.logout_outline,color: Colors.red,size: 30,),
+                  ),
                 ),
         )
       ],

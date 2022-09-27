@@ -21,4 +21,5 @@ static const kHight20 = SizedBox(height: 20);
 static const kHight10 = SizedBox(height: 10);
 static const kHight8 = SizedBox(height: 6);
 static const kWidth = SizedBox(width: 8);
+static const kWidth15 = SizedBox(width: 15);
 }

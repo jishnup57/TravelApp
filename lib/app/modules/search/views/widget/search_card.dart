@@ -38,7 +38,7 @@ class CardSearch extends StatelessWidget {
                 color: AppColor.kSecondaryColor,
               ),
               Text(
-                'India,Delhi',
+                item.location,
                 style: AppStyle.kCardTextStyle
                     .copyWith(color: AppColor.kSecondaryColor, fontSize: 13),
               ),

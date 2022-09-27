@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:travel_aliga/app/utils/model/new_token_model.dart';
@@ -15,14 +14,14 @@ class HelperIntercepter {
       dio.interceptors.clear();
       print('token is');
       log(token);
-      // Do something before request is sent
+    
       options.headers.addAll({
         "Authorization": "Bearer $token",
       });
       return handler.next(options);
     }, onResponse: (response, handler) {
-      // Do something with response data
-      return handler.next(response); // continue
+      
+      return handler.next(response); 
     }, onError: (e, handler) async {
       if (e.response?.statusCode == 403) {
         final refreshToken = await getRefreshToken();
