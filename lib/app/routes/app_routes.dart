@@ -13,6 +13,7 @@ abstract class Routes {
   static const favorate = Paths.favorate;
   static const settings = Paths.settings;
   static const splash = Paths.splash;
+  static const item = Paths.item;
 }
 
 abstract class Paths {
@@ -25,4 +26,5 @@ abstract class Paths {
   static const search = '/search';
   static const favorate = '/favorate';
   static const settings = '/settings';
+  static const item = '/item';
 }

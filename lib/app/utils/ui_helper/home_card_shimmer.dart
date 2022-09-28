@@ -25,3 +25,10 @@ class CustomWidget extends StatelessWidget {
     );
   }
 }
+
+/**
+  ShapeDecoration(
+                        color: Colors.grey[400],
+                        shape: RoundedRectangleBorder(),
+                      )
+ */

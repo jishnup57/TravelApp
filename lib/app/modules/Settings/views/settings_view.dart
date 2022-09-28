@@ -43,11 +43,14 @@ class SettingsView extends GetView<SettingsController> {
             AppStyle.kHight8,
             GetBuilder<SettingsController>(builder: (context) {
               return controller.userDetails == null
-                  ? CustomWidget(hight: 20, width: 140, shapeBorder: ShapeDecoration(
-                            color: Colors.grey[400],
-                            shape: RoundedRectangleBorder(
-                                ),
-                          ))
+                  ? CustomWidget(
+                      hight: 20,
+                      width: 140,
+                      shapeBorder: ShapeDecoration(
+                        color: Colors.grey[400],
+                        shape: RoundedRectangleBorder(),
+                      ),
+                    )
                   : Text(
                       "${controller.userDetails!.firstName.toString()} ${controller.userDetails!.lastName.toString()}",
                       style: AppStyle.kWelcomeSmall

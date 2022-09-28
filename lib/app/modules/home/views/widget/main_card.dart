@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:travel_aliga/app/modules/widgets/image_show.dart';
 import 'package:travel_aliga/app/utils/colors.dart';
 import 'package:travel_aliga/app/utils/style.dart';
+import 'package:travel_aliga/app/utils/ui_helper/rating_star.dart';
 
 class MainCard extends StatelessWidget {
   const MainCard({
@@ -25,7 +25,7 @@ class MainCard extends StatelessWidget {
         ),
         child: Container(
           width: width * .42,
-          decoration: CommonImageWidget.imageShow(url: imgUrl, radius: 20),
+          decoration: CommonImageWidget2.imageShow(url: imgUrl, radius: 20),
           child: Column(
             children: [
               AppStyle.kHight8,
@@ -49,27 +49,9 @@ class MainCard extends StatelessWidget {
               Row(
                 children: [
                   AppStyle.kWidth,
-                  RatingBar(
-                      initialRating: 3,
-                      ignoreGestures: true,
-                      direction: Axis.horizontal,
-                      allowHalfRating: true,
-                      itemCount: 5,
-                      itemSize: 18,
-                      ratingWidget: RatingWidget(
-                          full: const Icon(Icons.star, color: Colors.orange),
-                          half: const Icon(
-                            Icons.star_half,
-                            color: Colors.orange,
-                          ),
-                          empty: const Icon(
-                            Icons.star_outline,
-                            color: Colors.orange,
-                          )),
-                      onRatingUpdate: (value) {}),
+                  RatingStar(starSize: 18, starRating: 3),
                 ],
               ),
-            
               Row(
                 children: [
                   AppStyle.kWidth,
