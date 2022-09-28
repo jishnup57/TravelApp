@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:travel_aliga/app/modules/home/model/all_pakage_model.dart';
 import 'package:travel_aliga/app/modules/item/controller/item_controller.dart';
 import 'package:travel_aliga/app/modules/widgets/main_app_bar.dart';
 import 'package:travel_aliga/app/utils/colors.dart';
@@ -9,8 +10,9 @@ import 'package:travel_aliga/app/utils/ui_helper/home_card_shimmer.dart';
 import 'package:travel_aliga/app/utils/ui_helper/rating_star.dart';
 
 class ItemView extends StatelessWidget {
-  ItemView({Key? key}) : super(key: key);
+  ItemView({Key? key,required this.item}) : super(key: key);
   final ItemController controller = Get.put(ItemController());
+  final Result item;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -26,7 +28,7 @@ class ItemView extends StatelessWidget {
         children: [
           CachedNetworkImage(
             imageUrl:
-                "https://images.unsplash.com/photo-1661585683423-8a955285a6c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+                item.imagesMain,
             fit: BoxFit.fitHeight,
             placeholder: (context, url) => CustomWidget(
               hight: height / 1.8,
@@ -51,7 +53,7 @@ class ItemView extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: GestureDetector(
-                            onTap: () {},
+                            onTap: () => Get.back(),
                             child: Icon(
                               Icons.arrow_back_ios_new_rounded,
                               color: AppColor.kWhiteColor,
@@ -64,7 +66,7 @@ class ItemView extends StatelessWidget {
                     children: [
                       AppStyle.kWidth15,
                       Text(
-                        "KodaiKKanal",
+                        item.packageName,
                         style: AppStyle.kCardTextStyle.copyWith(fontSize: 28),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -115,7 +117,7 @@ class ItemView extends StatelessWidget {
                                     color: AppColor.kPrimaryColor,
                                   ),
                                   Text(
-                                    "TamilNadu ,Kerala",
+                                    item.location,
                                     style: AppStyle.kStartButtonText
                                         .copyWith(color: AppColor.kBlackColor),
                                   ),
@@ -123,7 +125,7 @@ class ItemView extends StatelessWidget {
                               ),
                               AppStyle.kHight8,
                               Text(
-                                "Short History of Italy's Floating City. The floating city of Venice, one of the most extraordinary cities in the world was built on 118 islands in the middle of the Venetian Lagoon at the head of the Adriatic Sea in Northern Italy gfdskig fjgsdifgh iufgreisg  dgfaiueg",
+                                item.overview,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 4,
                                 style: AppStyle.kIntermediateText.copyWith(
@@ -180,9 +182,9 @@ class ItemView extends StatelessWidget {
                                     width: 30,
                                   ),
                                   Text(
-                                    "5",
+                                    item.noOfPeoples,
                                     style: AppStyle.kIntermediateText
-                                        .copyWith(color: AppColor.kBlackColor),
+                                        .copyWith(color: AppColor.kBlackColor,fontWeight: FontWeight.w400 ),
                                   ),
                                 ],
                               ),
@@ -199,10 +201,10 @@ class ItemView extends StatelessWidget {
                                   ),
                                   Flexible(
                                     child: Text(
-                                      "Short History of Italy's Floating City. The floating city of Venice, one of the most extraordinary cities in the world was built on 118 islands in the middle of the Veneti",
+                                      item.inclusion,
                                       style: AppStyle.kIntermediateText
                                           .copyWith(
-                                              color: AppColor.kBlackColor),
+                                              color: AppColor.kBlackColor,fontWeight: FontWeight.w400),
                                       maxLines: 4,
                                       overflow: TextOverflow.ellipsis,
                                     ),
@@ -215,7 +217,7 @@ class ItemView extends StatelessWidget {
                                 children: [
                                   ElevatedButton(
                                     onPressed: () {},
-                                    child: Icon(Icons.bookmark),
+                                    child: Icon(Icons.bookmark_outline_rounded),
                                     style: ElevatedButton.styleFrom(
                                         minimumSize: Size(40, 60),
                                         primary: AppColor.kWhiteColor,

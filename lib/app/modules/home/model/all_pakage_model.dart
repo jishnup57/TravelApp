@@ -39,6 +39,7 @@ class Result {
     required this.inclusion,
     required this.exclusion,
     required this.thingsToPack,
+    required this.location,
   });
 
   String packageName;
@@ -55,6 +56,7 @@ class Result {
   String inclusion;
   String exclusion;
   String thingsToPack;
+  String location;
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
         packageName: json["package_name"],
@@ -71,5 +73,6 @@ class Result {
         inclusion: json["inclusion"],
         exclusion: json["exclusion"],
         thingsToPack: json["things_to_pack"],
+        location: json["location"]
       );
 }

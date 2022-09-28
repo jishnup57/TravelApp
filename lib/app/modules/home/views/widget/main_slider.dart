@@ -40,8 +40,7 @@ class MainSlider extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final item = packagesList[index];
                     return MainCard(
-                      imgUrl: item.imagesMain,
-                      imgtitle: item.packageName,
+                      item: item,
                     );
                   },
                   scrollDirection: Axis.horizontal,

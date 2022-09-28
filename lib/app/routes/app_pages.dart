@@ -4,7 +4,6 @@ import 'package:travel_aliga/app/modules/Favorate/bindings/favorate_binding.dart
 import 'package:travel_aliga/app/modules/Favorate/views/favorate_view.dart';
 import 'package:travel_aliga/app/modules/Settings/views/settings_view.dart';
 import 'package:travel_aliga/app/modules/home/views/home_view.dart';
-import 'package:travel_aliga/app/modules/item/view/item_view.dart';
 import 'package:travel_aliga/app/modules/mainscreen/bindings/mainscreen_binding.dart';
 import 'package:travel_aliga/app/modules/mainscreen/views/mainscreen_view.dart';
 import 'package:travel_aliga/app/modules/otp/bindings/otp_binding.dart';
@@ -18,7 +17,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const initial = Routes.item;
+  static const initial = Routes.splash;
 
   static final routes = [
     GetPage(
@@ -29,10 +28,10 @@ class AppPages {
       name: Paths.home,
       page: () => HomeView(),
     ),
-     GetPage(
-      name: Paths.item,
-      page: () => ItemView(),
-    ),
+    //  GetPage(
+    //   name: Paths.item,
+    //   page: () => ItemView(),
+    // ),
     GetPage(
       name: Paths.signIn,
       page: () => SigninView(),
@@ -68,3 +67,4 @@ class AppPages {
     ),
   ];
 }
+
