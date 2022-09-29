@@ -10,7 +10,7 @@ import 'package:travel_aliga/app/utils/ui_helper/home_card_shimmer.dart';
 import 'package:travel_aliga/app/utils/ui_helper/rating_star.dart';
 
 class ItemView extends StatelessWidget {
-  ItemView({Key? key,required this.item}) : super(key: key);
+  ItemView({Key? key, required this.item}) : super(key: key);
   final ItemController controller = Get.put(ItemController());
   final Result item;
   @override
@@ -27,9 +27,7 @@ class ItemView extends StatelessWidget {
       body: Stack(
         children: [
           CachedNetworkImage(
-            imageUrl:
-                item.imagesMain,
-            fit: BoxFit.fitHeight,
+            imageUrl: item.imagesMain,
             placeholder: (context, url) => CustomWidget(
               hight: height / 1.8,
               width: double.infinity,
@@ -38,48 +36,42 @@ class ItemView extends StatelessWidget {
                 shape: RoundedRectangleBorder(),
               ),
             ),
+            
             errorWidget: (context, url, error) => Icon(Icons.error),
             imageBuilder: (context, imageProvider) => Container(
               width: double.infinity,
-              height: height / 1.8,
+              height: height / 2,
               decoration: BoxDecoration(
-                image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+                image: DecorationImage(image: imageProvider,fit: BoxFit.fill,),
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: GestureDetector(
-                            onTap: () => Get.back(),
-                            child: Icon(
-                              Icons.arrow_back_ios_new_rounded,
-                              color: AppColor.kWhiteColor,
-                            )),
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                        onTap: () => Get.back(),
+                        child: Icon(
+                          Icons.arrow_back_ios_new_rounded,
+                          color: AppColor.kWhiteColor,
+                        )),
                   ),
                   Spacer(),
-                  Row(
-                    children: [
-                      AppStyle.kWidth15,
-                      Text(
-                        item.packageName,
-                        style: AppStyle.kCardTextStyle.copyWith(fontSize: 28),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(left:10.0),
+                    child: Text(
+                      item.packageName,
+                      style: AppStyle.kCardTextStyle.copyWith(fontSize: 28),
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                  Row(
-                    children: [
-                      AppStyle.kWidth15,
-                      RatingStar(starSize: 25, starRating: 4)
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(left:8.0),
+                    child: RatingStar(starSize: 25, starRating: 4),
                   ),
                   SizedBox(
-                    height: height * 0.12,
+                    height: height * 0.09,
                   )
                 ],
               ),
@@ -108,6 +100,7 @@ class ItemView extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               AppStyle.kHight10,
                               Row(
@@ -116,12 +109,17 @@ class ItemView extends StatelessWidget {
                                     Icons.location_on,
                                     color: AppColor.kPrimaryColor,
                                   ),
+                                  AppStyle.kWidth,
                                   Text(
                                     item.location,
-                                    style: AppStyle.kStartButtonText
-                                        .copyWith(color: AppColor.kBlackColor),
+                                    style: AppStyle.kIntermediateText,
                                   ),
                                 ],
+                              ),
+                              AppStyle.kHight8,
+                              Text(
+                               " ₹ ${ item.price.toString()}",
+                                style: AppStyle.kIntermediateText.copyWith(fontSize: 20,color: Colors.black.withOpacity(0.7)),
                               ),
                               AppStyle.kHight8,
                               Text(
@@ -131,7 +129,7 @@ class ItemView extends StatelessWidget {
                                 style: AppStyle.kIntermediateText.copyWith(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500,
-                                    color: Color(0xffC8C4C4)),
+                                    color: Color.fromARGB(255, 185, 185, 185)),
                               ),
                               AppStyle.kHight8,
                               Row(
@@ -183,8 +181,9 @@ class ItemView extends StatelessWidget {
                                   ),
                                   Text(
                                     item.noOfPeoples,
-                                    style: AppStyle.kIntermediateText
-                                        .copyWith(color: AppColor.kBlackColor,fontWeight: FontWeight.w400 ),
+                                    style: AppStyle.kIntermediateText.copyWith(
+                                        color: AppColor.kBlackColor,
+                                        fontWeight: FontWeight.w400),
                                   ),
                                 ],
                               ),
@@ -204,7 +203,8 @@ class ItemView extends StatelessWidget {
                                       item.inclusion,
                                       style: AppStyle.kIntermediateText
                                           .copyWith(
-                                              color: AppColor.kBlackColor,fontWeight: FontWeight.w400),
+                                              color: AppColor.kBlackColor,
+                                              fontWeight: FontWeight.w400),
                                       maxLines: 4,
                                       overflow: TextOverflow.ellipsis,
                                     ),
@@ -212,58 +212,6 @@ class ItemView extends StatelessWidget {
                                 ],
                               ),
                               AppStyle.kHight20,
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  ElevatedButton(
-                                    onPressed: () {},
-                                    child: Icon(Icons.bookmark_outline_rounded),
-                                    style: ElevatedButton.styleFrom(
-                                        minimumSize: Size(40, 60),
-                                        primary: AppColor.kWhiteColor,
-                                        onPrimary: AppColor.kPrimaryColor,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
-                                        side: BorderSide(
-                                            width: 2,
-                                            color: AppColor.kPrimaryColor)),
-                                  ),
-                                 
-                                  Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: ElevatedButton.icon(
-                                      onPressed: () {},
-                                      icon: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Icon(
-                                            Icons.arrow_back_ios,
-                                            size: 18,
-                                          ),
-                                          Icon(
-                                            Icons.arrow_back_ios,
-                                            size: 14,
-                                          ),
-                                          Icon(
-                                            Icons.arrow_back_ios,
-                                            size: 12,
-                                          )
-                                        ],
-                                      ),
-                                      label: Text('Book Now',textScaleFactor: 1.5,),
-                                      style: ElevatedButton.styleFrom(
-                                        minimumSize: Size(width * 0.65, 60),
-                                        primary: AppColor.kPrimaryColor,
-                                        onPrimary: AppColor.kWhiteColor,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              )
                             ],
                           ),
                         ),
@@ -287,6 +235,59 @@ class ItemView extends StatelessWidget {
             ),
           ),
         ],
+      ),
+      bottomSheet: Padding(
+        padding: const EdgeInsets.only(bottom: 8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            ElevatedButton(
+              onPressed: () {},
+              child: Icon(Icons.bookmark_outline_rounded),
+              style: ElevatedButton.styleFrom(
+                  minimumSize: Size(40, 60),
+                  primary: AppColor.kWhiteColor,
+                  onPrimary: AppColor.kPrimaryColor,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  side: BorderSide(width: 2, color: AppColor.kPrimaryColor)),
+            ),
+            Directionality(
+              textDirection: TextDirection.rtl,
+              child: ElevatedButton.icon(
+                onPressed: () {},
+                icon: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.arrow_back_ios,
+                      size: 18,
+                    ),
+                    Icon(
+                      Icons.arrow_back_ios,
+                      size: 14,
+                    ),
+                    Icon(
+                      Icons.arrow_back_ios,
+                      size: 12,
+                    )
+                  ],
+                ),
+                label: Text(
+                  'Book Now',
+                  textScaleFactor: 1.5,
+                ),
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(width * 0.65, 60),
+                  primary: AppColor.kPrimaryColor,
+                  onPrimary: AppColor.kWhiteColor,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

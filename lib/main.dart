@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:travel_aliga/app/routes/app_pages.dart';
+import 'package:travel_aliga/app/modules/explore/view/explore_view.dart';
 
 
 void main() {
@@ -9,8 +9,9 @@ void main() {
     GetMaterialApp(
       title: "Application",
       debugShowCheckedModeBanner: false,
-      initialRoute: AppPages.initial,
-      getPages: AppPages.routes,
+      // initialRoute: AppPages.initial,
+      // getPages: AppPages.routes,
+      home: ExploreView(),
     ),
   );
 }
