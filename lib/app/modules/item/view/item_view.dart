@@ -1,12 +1,12 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:travel_aliga/app/modules/explore/view/explore_view.dart';
 import 'package:travel_aliga/app/modules/home/model/all_pakage_model.dart';
 import 'package:travel_aliga/app/modules/item/controller/item_controller.dart';
+import 'package:travel_aliga/app/modules/payment/controller/payment_controller.dart';
 import 'package:travel_aliga/app/modules/widgets/main_app_bar.dart';
 import 'package:travel_aliga/app/utils/colors.dart';
 import 'package:travel_aliga/app/utils/style.dart';
-import 'package:travel_aliga/app/utils/ui_helper/home_card_shimmer.dart';
 import 'package:travel_aliga/app/utils/ui_helper/rating_star.dart';
 
 class ItemView extends StatelessWidget {
@@ -26,23 +26,17 @@ class ItemView extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          CachedNetworkImage(
-            imageUrl: item.imagesMain,
-            placeholder: (context, url) => CustomWidget(
-              hight: height / 1.8,
-              width: double.infinity,
-              shapeBorder: ShapeDecoration(
-                color: Colors.grey[400],
-                shape: RoundedRectangleBorder(),
-              ),
-            ),
-            
-            errorWidget: (context, url, error) => Icon(Icons.error),
-            imageBuilder: (context, imageProvider) => Container(
+          Container(
               width: double.infinity,
               height: height / 2,
               decoration: BoxDecoration(
-                image: DecorationImage(image: imageProvider,fit: BoxFit.fill,),
+                image: DecorationImage(image: Image.network(item.imagesMain,loadingBuilder: (context, child, loadingProgress) {
+                  if(loadingProgress == null){
+                    return child;
+                  }else{
+                    return Center(child: CircularProgressIndicator(strokeWidth: 2,));
+                  }
+                },).image,fit: BoxFit.fill,),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,7 +70,7 @@ class ItemView extends StatelessWidget {
                 ],
               ),
             ),
-          ),
+   
           Align(
             alignment: Alignment.bottomCenter,
             child: Stack(
@@ -221,14 +215,17 @@ class ItemView extends StatelessWidget {
                 ),
                 Positioned(
                   right: width * 0.1,
-                  child: CircleAvatar(
-                    backgroundColor: AppColor.kPrimaryColor,
-                    radius: 30,
-                    child: Icon(
-                      Icons.play_arrow_rounded,
-                      size: 50,
-                      color: AppColor.kWhiteColor,
+                  child: GestureDetector(
+                    child: CircleAvatar(
+                      backgroundColor: AppColor.kPrimaryColor,
+                      radius: 30,
+                      child: Icon(
+                        Icons.play_arrow_rounded,
+                        size: 50,
+                        color: AppColor.kWhiteColor,
+                      ),
                     ),
+                    onTap: () => Get.to(()=>ExploreView(item: item,)),
                   ),
                 ),
               ],
@@ -255,7 +252,9 @@ class ItemView extends StatelessWidget {
             Directionality(
               textDirection: TextDirection.rtl,
               child: ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                    PaymentController().option(item.packageName, item.price);
+                },
                 icon: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -292,3 +291,16 @@ class ItemView extends StatelessWidget {
     );
   }
 }
+/**
+ *   CachedNetworkImage(
+            imageUrl: item.imagesMain,
+            placeholder: (context, url) => CustomWidget(
+              hight: height / 1.8,
+              width: double.infinity,
+              shapeBorder: ShapeDecoration(
+                color: Colors.grey[400],
+                shape: RoundedRectangleBorder(),
+              ),
+            ),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+ */

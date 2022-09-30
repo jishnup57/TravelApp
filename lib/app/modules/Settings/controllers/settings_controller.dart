@@ -14,10 +14,10 @@ class SettingsController extends GetxController{
   SettingsController() {
     getUserProfile();
   }
-
+  static FlutterSecureStorage st = FlutterSecureStorage();
   static bool profileLoaded = false;
   UserProfile? userDetails;
-
+ 
   getUserProfile() async {
     if(profileLoaded){
       return;
@@ -26,6 +26,7 @@ class SettingsController extends GetxController{
     if(result != null){
       if(result.firstName != null){
        userDetails = result;
+      addToSecureStorage();
         update();
       }else{
         ErrorDialoge.showSnakBar(result.message!);
@@ -36,11 +37,21 @@ class SettingsController extends GetxController{
   }
   static userLogout()async{
     SharedPreferences sp = await SharedPreferences.getInstance();
-    FlutterSecureStorage st = FlutterSecureStorage();
+   
     await sp.remove("isLogined");
     await st.delete(key: "Token");
     await st.delete(key: "refreshToken");
     profileLoaded = false;
+    sp.clear();
+    st.deleteAll();
     Get.offAllNamed(Paths.splash);
   }
+  addToSecureStorage()async{
+     FlutterSecureStorage st = FlutterSecureStorage();
+      await st.write(key: "phone", value: userDetails!.phone);
+      await st.write(key:"email",value: userDetails!.email);
+  }
+
+
+  
 }

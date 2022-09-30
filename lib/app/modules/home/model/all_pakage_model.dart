@@ -40,6 +40,7 @@ class Result {
     required this.exclusion,
     required this.thingsToPack,
     required this.location,
+    required this.reviews,
   });
 
   String packageName;
@@ -57,6 +58,7 @@ class Result {
   String exclusion;
   String thingsToPack;
   String location;
+  List<Review> reviews;
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
         packageName: json["package_name"],
@@ -73,6 +75,29 @@ class Result {
         inclusion: json["inclusion"],
         exclusion: json["exclusion"],
         thingsToPack: json["things_to_pack"],
-        location: json["location"]
+        location: json["location"],
+        reviews: json["reviews"] == null? [] : List<Review>.from(json["reviews"].map((x)=>Review.fromJson(x))),
+      );
+}
+
+class Review {
+  int id;
+  int rating;
+  String description;
+  bool active;
+  int package;
+  Review({
+    required this.id,
+    required this.rating,
+    required this.description,
+    required this.active,
+    required this.package,
+  });
+  factory Review.fromJson(Map<String, dynamic> json) => Review(
+        id: json["id"],
+        rating: json["rating"],
+        description: json['description'],
+        active: json["active"],
+        package: json["package"],
       );
 }

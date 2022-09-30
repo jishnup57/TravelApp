@@ -35,12 +35,13 @@ class MainSlider extends StatelessWidget {
         LimitedBox(
           maxHeight: height * 0.27,
           child: packagesList.isNotEmpty
-              ? ListView(
+              ? ListView.builder(
                 scrollDirection:  Axis.horizontal,
-                children: List.generate(packagesList.length, (index) {
-                  final item = packagesList[index];
+                itemBuilder: (context, index) {
+                   final item = packagesList[index];
                   return MainCard(item: item);
-                }),
+                },
+                itemCount:packagesList.length ,
               )
               : Center(child: CircularProgressIndicator(strokeWidth: 2,)),
         ),
