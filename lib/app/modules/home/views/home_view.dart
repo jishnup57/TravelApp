@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -15,69 +14,76 @@ import 'package:travel_aliga/app/utils/urls.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends StatelessWidget {
-
- final HomeController controllerHome = Get.put(HomeController.instance);
+  final HomeController controllerHome = Get.put(HomeController.instance);
 
   @override
- Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
 
-    return  Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: NotificationListener<OverscrollIndicatorNotification>(
+        onNotification: (overscroll) {
+          overscroll.disallowIndicator();
+          return true;
+        },
         child: ListView(
           children: [
-            const MainAppBar(title: 'Explore',),
+            const MainAppBar(
+              title: 'Explore',
+            ),
             LimitedBox(
               maxHeight: height * .4,
-              child:  Tabbs(tabWidget: TabContentHome()),
+              child: Tabbs(tabWidget: TabContentHome()),
             ),
-             const TrendingWidget(title: 'Popular'),
-              AppStyle.kHight8,
+            TrendingWidget(
+              title: 'Popular',
+            ),
+            AppStyle.kHight8,
             Text(
               "Explore more",
               style: AppStyle.kIntermediateText.copyWith(color: Colors.black),
             ),
             AppStyle.kHight8,
-            Container(
-              height: height * .1,
-              decoration: BoxDecoration(
-                  color: AppColor.kWhiteColor, borderRadius: BorderRadius.circular(6)),
-              child: GetBuilder<HomeController>(builder: (controllerHome) {
-                return controllerHome.allCategoryList.isNotEmpty? ListView.builder(
-                  itemBuilder: (context, index) {
-                final list = controllerHome.allCategoryList[index];
-               
-
-                    return ExploreMoreCard(img: "${Url.baseUrl}${list.image}");
-                  },
-                  itemCount: HomeController.instance.allCategoryList.length,
-                  scrollDirection: Axis.horizontal,
-                  physics: const BouncingScrollPhysics(),
-                ):ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 6,
-                  itemBuilder: (context, index) => 
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CustomWidget(
-                          hight: 50,
-                          width:60,
-                          shapeBorder: ShapeDecoration(
-                            color: Colors.grey[400]!,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5)),
-                          ),
+            GetBuilder<HomeController>(
+              builder: (controllerHome) {
+                return controllerHome.allCategoryList.isNotEmpty
+                    ? Container(
+                        height: height * .1,
+                        decoration: BoxDecoration(
+                            color: AppColor.kWhiteColor,
+                            borderRadius: BorderRadius.circular(6)),
+                        child: ListView.builder(
+                          itemBuilder: (context, index) {
+                            final list = controllerHome.allCategoryList[index];
+      
+                            return ExploreMoreCard(
+                                img: "${Url.baseUrl}${list.image}");
+                          },
+                          itemCount:
+                              HomeController.instance.allCategoryList.length,
+                          scrollDirection: Axis.horizontal,
+                          physics: const BouncingScrollPhysics(),
                         ),
-                )
-                ,);
+                      )
+                    : CustomWidget(
+                        hight: height * .1,
+                        width: double.infinity,
+                        shapeBorder: ShapeDecoration(
+                          color: Colors.grey[400]!,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5)),
+                        ),
+                      );
               },
-              ),
             ),
             AppStyle.kHight8,
-            const TrendingWidget(title: 'Trending'),
+            TrendingWidget(
+              title: 'Trending',
+            )
           ],
         ),
-      );
-    
+      ),
+    );
   }
 }

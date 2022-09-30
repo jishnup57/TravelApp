@@ -18,7 +18,7 @@ class FavoriteSlider extends StatelessWidget {
           width: double.infinity,
           height: height * 0.73,
           child: ListView.builder(
-            itemBuilder: (context, index) => const CardFavorite(),
+            itemBuilder: (context, index) =>  CardFavorite2(),
             itemCount: 20,
           ),
         ),

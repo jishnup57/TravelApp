@@ -61,4 +61,10 @@ class PaymentController extends GetxController {
     String email = await st.read(key: "email")??'';
     return {phone,email};
   }
+  @override
+  void onClose() {
+ 
+    super.onClose();
+    razorpay.clear();
+  }
 }

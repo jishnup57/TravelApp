@@ -29,15 +29,24 @@ class ItemView extends StatelessWidget {
           Container(
               width: double.infinity,
               height: height / 2,
-              decoration: BoxDecoration(
-                image: DecorationImage(image: Image.network(item.imagesMain,loadingBuilder: (context, child, loadingProgress) {
-                  if(loadingProgress == null){
-                    return child;
-                  }else{
-                    return Center(child: CircularProgressIndicator(strokeWidth: 2,));
-                  }
-                },).image,fit: BoxFit.fill,),
+              decoration:BoxDecoration(
+                image: DecorationImage(
+                  image:  FadeInImage.assetNetwork(placeholder: 'asset/shimmer_effect.json', image:item.imagesMain ).image,
+                  fit: BoxFit.cover,
+                ),
               ),
+              
+              
+
+              //  BoxDecoration(
+              //   image: DecorationImage(image: Image.network(item.imagesMain,loadingBuilder: (context, child, loadingProgress) {
+              //     if(loadingProgress == null){
+              //       return child;
+              //     }else{
+              //       return Center(child: CircularProgressIndicator(strokeWidth: 2,));
+              //     }
+              //   },).image,fit: BoxFit.fill,),
+              // ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
