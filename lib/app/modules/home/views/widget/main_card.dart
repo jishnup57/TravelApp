@@ -18,82 +18,75 @@ class MainCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-     double height = MediaQuery.of(context).size.height;
+    double height = MediaQuery.of(context).size.height;
     return GestureDetector(
       onTap: () => Get.to(() => ItemView(
             item: item,
           )),
       child: Padding(
-        padding: const EdgeInsets.only(right: 8.0),
-        child: Card(
-          elevation: 4,
-          shadowColor: AppColor.kPrimaryColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
+        padding: const EdgeInsets.only(right: 15),
+        child: CachedNetworkImage(
+          imageUrl: item.imagesMain,
+          placeholder: (context, url) => CustomWidget(
+            hight: height * 0.27,
+            width: width * .42,
+            shapeBorder: ShapeDecoration(
+              color: Colors.grey[400]!,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)),
+            ),
           ),
-          child: CachedNetworkImage(
-            imageUrl: item.imagesMain,
-            placeholder: (context, url) => CustomWidget(
-                        hight: height * 0.27,
-                        width: width * .42,
-                        shapeBorder: ShapeDecoration(
-                          color: Colors.grey[400]!,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
+          imageBuilder: (context, imageProvider) => Container(
+            width: width * .42,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              image: DecorationImage(
+                image: imageProvider,
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Column(
+              children: [
+                AppStyle.kHight8,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 5),
+                      child: CircleAvatar(
+                        backgroundColor: AppColor.kBlackColor.withOpacity(.4),
+                        child: const Icon(
+                          Icons.bookmark_outline,
+                          size: 24,
+                          color: AppColor.kWhiteColor,
                         ),
                       ),
-            imageBuilder: (context, imageProvider) => Container(
-              width: width * .42,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                image: DecorationImage(
-                  image: imageProvider,
-                  fit: BoxFit.cover,
+                    ),
+                  ],
                 ),
-              ),
-              child: Column(
-                children: [
-                  AppStyle.kHight8,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 5),
-                        child: CircleAvatar(
-                          backgroundColor: AppColor.kBlackColor.withOpacity(.4),
-                          child: const Icon(
-                            Icons.bookmark_outline,
-                            size: 24,
-                            color: AppColor.kWhiteColor,
-                          ),
-                        ),
+                const Spacer(),
+                Row(
+                  children: [
+                    AppStyle.kWidth,
+                    RatingStar(starSize: 18, starRating: 3),
+                  ],
+                ),
+                Row(
+                  children: [
+                    AppStyle.kWidth,
+                    Expanded(
+                      child: Text(
+                        item.packageName,
+                        style: AppStyle.kCardTextStyle,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                    ],
-                  ),
-                  const Spacer(),
-                  Row(
-                    children: [
-                      AppStyle.kWidth,
-                      RatingStar(starSize: 18, starRating: 3),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      AppStyle.kWidth,
-                      Expanded(
-                        child: Text(
-                          item.packageName,
-                          style: AppStyle.kCardTextStyle,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  )
-                ],
-              ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                )
+              ],
             ),
           ),
         ),

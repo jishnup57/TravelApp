@@ -34,7 +34,7 @@ class PaymentController extends GetxController {
    
 
     var options = {
-      'key': "rzp_test_xOuTvy4dNHita4",
+      'key': "rzp_test_jG8FLjSJeRkNGh",
       'amount': price * 100,
       'name': 'On-Demand',
       'description':packageName,

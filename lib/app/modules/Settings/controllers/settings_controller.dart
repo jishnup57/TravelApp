@@ -10,18 +10,18 @@ import 'package:travel_aliga/app/utils/error_dialog.dart';
 
 class SettingsController extends GetxController{
 
-
-  SettingsController() {
-    getUserProfile();
+    @override
+  void onInit() {
+    super.onInit();
+     getUserProfile();
   }
+
   static FlutterSecureStorage st = FlutterSecureStorage();
-  static bool profileLoaded = false;
+ 
   UserProfile? userDetails;
  
   getUserProfile() async {
-    if(profileLoaded){
-      return;
-    }
+
     final result = await ApiSettings().fetch();
     if(result != null){
       if(result.firstName != null){
@@ -41,7 +41,7 @@ class SettingsController extends GetxController{
     await sp.remove("isLogined");
     await st.delete(key: "Token");
     await st.delete(key: "refreshToken");
-    profileLoaded = false;
+   
     sp.clear();
     st.deleteAll();
     Get.offAllNamed(Paths.splash);

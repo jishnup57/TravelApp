@@ -25,6 +25,7 @@ class AllPakages {
 
 class Result {
   Result({
+    required this.packageId,
     required this.packageName,
     required this.slug,
     required this.overview,
@@ -42,7 +43,7 @@ class Result {
     required this.location,
     required this.reviews,
   });
-
+  int packageId;
   String packageName;
   String slug;
   String overview;
@@ -61,6 +62,7 @@ class Result {
   List<Review> reviews;
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
+        packageId: json["id"],
         packageName: json["package_name"],
         slug: json["slug"],
         overview: json["Overview"],

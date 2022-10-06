@@ -11,8 +11,8 @@ import 'package:travel_aliga/app/utils/ui_helper/rating_star.dart';
 
 class ItemView extends StatelessWidget {
   ItemView({Key? key, required this.item}) : super(key: key);
-  final ItemController controller = Get.put(ItemController());
   final Result item;
+  final ItemController controller = Get.put(ItemController());
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -35,18 +35,6 @@ class ItemView extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              
-              
-
-              //  BoxDecoration(
-              //   image: DecorationImage(image: Image.network(item.imagesMain,loadingBuilder: (context, child, loadingProgress) {
-              //     if(loadingProgress == null){
-              //       return child;
-              //     }else{
-              //       return Center(child: CircularProgressIndicator(strokeWidth: 2,));
-              //     }
-              //   },).image,fit: BoxFit.fill,),
-              // ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -144,6 +132,7 @@ class ItemView extends StatelessWidget {
                                     style: AppStyle.kIntermediateText,
                                   ),
                                   GetBuilder<ItemController>(
+                                    initState: (state) => controller.getSlotes(item.packageId.toString()),
                                       builder: (context) {
                                     return DropdownButton(
                                       hint: const Text(
@@ -248,12 +237,12 @@ class ItemView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+               //  controller.getSlotes(item.packageId.toString());
+              },
               child: Icon(Icons.bookmark_outline_rounded),
               style: ElevatedButton.styleFrom(
-                  minimumSize: Size(40, 60),
-                  primary: AppColor.kWhiteColor,
-                  onPrimary: AppColor.kPrimaryColor,
+                  onPrimary: AppColor.kPrimaryColor, minimumSize: Size(40, 60), primary: AppColor.kWhiteColor,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                   side: BorderSide(width: 2, color: AppColor.kPrimaryColor)),
@@ -286,9 +275,7 @@ class ItemView extends StatelessWidget {
                   textScaleFactor: 1.5,
                 ),
                 style: ElevatedButton.styleFrom(
-                  minimumSize: Size(width * 0.65, 60),
-                  primary: AppColor.kPrimaryColor,
-                  onPrimary: AppColor.kWhiteColor,
+                  onPrimary: AppColor.kWhiteColor, minimumSize: Size(width * 0.65, 60), primary: AppColor.kPrimaryColor,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                 ),
@@ -300,16 +287,3 @@ class ItemView extends StatelessWidget {
     );
   }
 }
-/**
- *   CachedNetworkImage(
-            imageUrl: item.imagesMain,
-            placeholder: (context, url) => CustomWidget(
-              hight: height / 1.8,
-              width: double.infinity,
-              shapeBorder: ShapeDecoration(
-                color: Colors.grey[400],
-                shape: RoundedRectangleBorder(),
-              ),
-            ),
-            errorWidget: (context, url, error) => Icon(Icons.error),
- */
