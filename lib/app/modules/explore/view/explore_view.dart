@@ -1,8 +1,8 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
+import 'package:travel_aliga/app/modules/chat/view/char_view.dart';
 import 'package:travel_aliga/app/modules/explore/controller/explore_controller.dart';
 import 'package:travel_aliga/app/modules/home/model/all_pakage_model.dart';
 import 'package:travel_aliga/app/utils/colors.dart';
@@ -117,7 +117,7 @@ class ExploreView extends StatelessWidget {
                   textDirection: TextDirection.rtl,
                   child: ElevatedButton.icon(
                     onPressed: () {
-                      log(item.reviews.length.toString());
+                     Get.to(()=>ChatView(item: item,));
                     },
                     icon: Row(
                       mainAxisSize: MainAxisSize.min,

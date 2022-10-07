@@ -49,20 +49,24 @@ class SearchView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Center(
-                          child: TextFormField(
-                            onChanged: (value) {
-                              if (value.isEmpty) {
-                                return;
-                              }
+                          child: Padding(
+                            padding: const EdgeInsets.only(left:16),
+                            child: TextFormField(
+                              onChanged: (value) {
+                                if (value.isEmpty) {
+                                  return;
+                                }
 
-                              controller.onSearchAction(value);
-                            },
-                            textAlign: TextAlign.center,
-                            decoration: const InputDecoration(
-                                hintText: 'Where do you want to go?',
-                                border: InputBorder.none,
-                                // prefixIcon: Icon(Icons.search),
-                                suffixIcon: Icon(Icons.search)),
+                                controller.onSearchAction(value);
+                              },
+                              textAlign: TextAlign.left,
+                              decoration:  InputDecoration(
+                                  hintText: 'Where do you want to go?',
+                                  hintStyle: TextStyle(color: Colors.grey.shade400),
+                                  border: InputBorder.none,
+                                  // prefixIcon: Icon(Icons.search),
+                                  suffixIcon: Icon(Icons.search)),
+                            ),
                           ),
                         ),
                       ),

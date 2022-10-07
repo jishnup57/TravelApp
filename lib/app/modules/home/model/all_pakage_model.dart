@@ -88,12 +88,14 @@ class Review {
   String description;
   bool active;
   int package;
+  String time;
   Review({
     required this.id,
     required this.rating,
     required this.description,
     required this.active,
     required this.package,
+    required this.time,
   });
   factory Review.fromJson(Map<String, dynamic> json) => Review(
         id: json["id"],
@@ -101,5 +103,12 @@ class Review {
         description: json['description'],
         active: json["active"],
         package: json["package"],
+        time: json['created'],
+        
       );
+  Map<String,dynamic> toJson()=>{
+    'rating':rating,
+    'description':description,
+    'package':package,
+  };
 }

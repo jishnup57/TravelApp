@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travel_aliga/app/modules/explore/view/explore_view.dart';
@@ -11,8 +13,9 @@ import 'package:travel_aliga/app/utils/ui_helper/rating_star.dart';
 
 class ItemView extends StatelessWidget {
   ItemView({Key? key, required this.item}) : super(key: key);
-  final Result item;
+   final Result item;
   final ItemController controller = Get.put(ItemController());
+  final PaymentController paymentController = Get.put(PaymentController());
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -27,47 +30,50 @@ class ItemView extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-              width: double.infinity,
-              height: height / 2,
-              decoration:BoxDecoration(
-                image: DecorationImage(
-                  image:  FadeInImage.assetNetwork(placeholder: 'asset/shimmer_effect.json', image:item.imagesMain ).image,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                        onTap: () => Get.back(),
-                        child: Icon(
-                          Icons.arrow_back_ios_new_rounded,
-                          color: AppColor.kWhiteColor,
-                        )),
-                  ),
-                  Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.only(left:10.0),
-                    child: Text(
-                      item.packageName,
-                      style: AppStyle.kCardTextStyle.copyWith(fontSize: 28),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left:8.0),
-                    child: RatingStar(starSize: 25, starRating: 4),
-                  ),
-                  SizedBox(
-                    height: height * 0.09,
-                  )
-                ],
+            width: double.infinity,
+            height: height / 2,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: FadeInImage.assetNetwork(
+                        placeholder: 'asset/shimmer_effect.json',
+                        image: item.imagesMain)
+                    .image,
+                fit: BoxFit.cover,
               ),
             ),
-   
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GestureDetector(
+                    onTap: () => Get.back(),
+                    child: Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                      color: AppColor.kWhiteColor,
+                    ),
+                  ),
+                ),
+                Spacer(),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  child: Text(
+                    item.packageName,
+                    style: AppStyle.kCardTextStyle.copyWith(fontSize: 28),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: RatingStar(starSize: 25, starRating: 4),
+                ),
+                SizedBox(
+                  height: height * 0.09,
+                )
+              ],
+            ),
+          ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Stack(
@@ -109,8 +115,10 @@ class ItemView extends StatelessWidget {
                               ),
                               AppStyle.kHight8,
                               Text(
-                               " ₹ ${ item.price.toString()}",
-                                style: AppStyle.kIntermediateText.copyWith(fontSize: 20,color: Colors.black.withOpacity(0.7)),
+                                " ₹ ${item.price.toString()}",
+                                style: AppStyle.kIntermediateText.copyWith(
+                                    fontSize: 20,
+                                    color: Colors.black.withOpacity(0.7)),
                               ),
                               AppStyle.kHight8,
                               Text(
@@ -132,31 +140,39 @@ class ItemView extends StatelessWidget {
                                     style: AppStyle.kIntermediateText,
                                   ),
                                   GetBuilder<ItemController>(
-                                    initState: (state) => controller.getSlotes(item.packageId.toString()),
+                                      initState: (state) => controller
+                                          .getSlotes(item.packageId.toString()),
                                       builder: (context) {
-                                    return DropdownButton(
-                                      hint: const Text(
-                                        'Select a Date',
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                      icon: const Icon(
-                                        Icons.keyboard_arrow_down,
-                                        color: Colors.black,
-                                      ),
-                                      value: controller.dropdownName,
-                                      items: controller.avalableList
-                                          .map((String value) {
-                                        return DropdownMenuItem<String>(
-                                          value: value,
-                                          child: Text(value),
+                                        return SizedBox(
+                                          width: width / 3,
+                                          child: DropdownButtonFormField(
+                                            hint: const Text(
+                                              'Select a Date',
+                                              style: TextStyle(
+                                                  color: Colors.black),
+                                            ),
+                                            icon: const Icon(
+                                              Icons.keyboard_arrow_down,
+                                              color: Colors.black,
+                                            ),
+                                            decoration: InputDecoration(
+                                              enabledBorder: InputBorder.none,
+                                              focusedBorder: InputBorder.none,
+                                            ),
+                                            items: controller.avalableList
+                                                .map((value) {
+                                              return DropdownMenuItem<String>(
+                                                value: value.id.toString(),
+                                                child:
+                                                    Text(value.date.toString()),
+                                              );
+                                            }).toList(),
+                                            onChanged: (value) {
+                                              log(value.toString());
+                                            },
+                                          ),
                                         );
-                                      }).toList(),
-                                      onChanged: (value) {
-                                        print(value);
-                                        controller.dropdownButtonRebuild(value);
-                                      },
-                                    );
-                                  }),
+                                      }),
                                   SizedBox(
                                     width: 10,
                                   )
@@ -223,7 +239,9 @@ class ItemView extends StatelessWidget {
                         color: AppColor.kWhiteColor,
                       ),
                     ),
-                    onTap: () => Get.to(()=>ExploreView(item: item,)),
+                    onTap: () => Get.to(() => ExploreView(
+                          item: item,
+                        )),
                   ),
                 ),
               ],
@@ -238,11 +256,13 @@ class ItemView extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-               //  controller.getSlotes(item.packageId.toString());
+                //  controller.getSlotes(item.packageId.toString());
               },
               child: Icon(Icons.bookmark_outline_rounded),
               style: ElevatedButton.styleFrom(
-                  onPrimary: AppColor.kPrimaryColor, minimumSize: Size(40, 60), primary: AppColor.kWhiteColor,
+                  onPrimary: AppColor.kPrimaryColor,
+                  minimumSize: Size(40, 60),
+                  primary: AppColor.kWhiteColor,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                   side: BorderSide(width: 2, color: AppColor.kPrimaryColor)),
@@ -251,7 +271,7 @@ class ItemView extends StatelessWidget {
               textDirection: TextDirection.rtl,
               child: ElevatedButton.icon(
                 onPressed: () {
-                    PaymentController().option(item.packageName, item.price);
+                  paymentController.option(item.packageName, item.price);
                 },
                 icon: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -275,7 +295,9 @@ class ItemView extends StatelessWidget {
                   textScaleFactor: 1.5,
                 ),
                 style: ElevatedButton.styleFrom(
-                  onPrimary: AppColor.kWhiteColor, minimumSize: Size(width * 0.65, 60), primary: AppColor.kPrimaryColor,
+                  onPrimary: AppColor.kWhiteColor,
+                  minimumSize: Size(width * 0.65, 60),
+                  primary: AppColor.kPrimaryColor,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                 ),

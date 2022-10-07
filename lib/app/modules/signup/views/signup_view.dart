@@ -22,77 +22,75 @@ class SignupView extends StatelessWidget {
           appBarColor: AppColor.kWhiteColor,
         ),
       ),
-      body: GestureDetector(
-        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-        child: ListView(
-          physics: BouncingScrollPhysics(),
-          children: [
-            Stack(
+      body: ListView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        physics: BouncingScrollPhysics(),
+        children: [
+          Stack(
+            children: [
+              Image.asset(
+                'asset/image/signin.jpg',
+              ),
+              IconButton(
+                  onPressed: () => Get.back(),
+                  icon: Icon(Icons.arrow_back_ios_new)),
+            ],
+          ),
+          AppStyle.kHight10,
+          Form(
+            key: controller.signUpKey,
+            child: Column(
               children: [
-                Image.asset(
-                  'asset/image/signin.jpg',
+                SignUpTextforms(
+                    icon: Icons.person_outline_outlined,
+                    text: "First Name",
+                    vertical: 20,
+                    controller: controller.firstNameControlleer,
+                    validator: controller.firstNameValidator),
+                SignUpTextforms(
+                  icon: Icons.person_outline_outlined,
+                  text: "Last Name",
+                  vertical: 20,
+                  controller: controller.lastNameControlleer,
+                  validator: controller.lastNameValidator,
                 ),
-                IconButton(
-                    onPressed: () => Get.back(),
-                    icon: Icon(Icons.arrow_back_ios_new)),
+                SignUpTextforms(
+                  icon: Icons.alternate_email,
+                  text: "Email",
+                  vertical: 15,
+                  controller: controller.emailControlleer,
+                  validator: controller.emailValidator,
+                ),
+                SignUpTextforms(
+                  icon: Icons.send_to_mobile_rounded,
+                  text: "Phone",
+                  vertical: 15,
+                  keytype: TextInputType.number,
+                  controller: controller.phoneControlleer,
+                  validator: controller.phoneValidator,
+                ),
+                SignUpTextforms(
+                  icon: Icons.lock_outline,
+                  text: "Password",
+                  vertical: 15,
+                  controller: controller.passwordControlleer,
+                  validator: controller.passwordValidator,
+                ),
+                SignUpTextforms(
+                  icon: Icons.lock_reset_outlined,
+                  text: "Confirm Password",
+                  vertical: 15,
+                  controller: controller.confirmPasswordControlleer,
+                  obscureText: true,
+                  validator: controller.confirmPasswordValidator,
+                ),
+                SizedBox(
+                  height: 100,
+                )
               ],
             ),
-            AppStyle.kHight10,
-            Form(
-              key: controller.signUpKey,
-              child: Column(
-                children: [
-                  SignUpTextforms(
-                      icon: Icons.person_outline_outlined,
-                      text: "First Name",
-                      vertical: 20,
-                      controller: controller.firstNameControlleer,
-                      validator: controller.firstNameValidator),
-                  SignUpTextforms(
-                    icon: Icons.person_outline_outlined,
-                    text: "Last Name",
-                    vertical: 20,
-                    controller: controller.lastNameControlleer,
-                    validator: controller.lastNameValidator,
-                  ),
-                  SignUpTextforms(
-                    icon: Icons.alternate_email,
-                    text: "Email",
-                    vertical: 15,
-                    controller: controller.emailControlleer,
-                    validator: controller.emailValidator,
-                  ),
-                  SignUpTextforms(
-                    icon: Icons.send_to_mobile_rounded,
-                    text: "Phone",
-                    vertical: 15,
-                    keytype: TextInputType.number,
-                    controller: controller.phoneControlleer,
-                    validator: controller.phoneValidator,
-                  ),
-                  SignUpTextforms(
-                    icon: Icons.lock_outline,
-                    text: "Password",
-                    vertical: 15,
-                    controller: controller.passwordControlleer,
-                    validator: controller.passwordValidator,
-                  ),
-                  SignUpTextforms(
-                    icon: Icons.lock_reset_outlined,
-                    text: "Confirm Password",
-                    vertical: 15,
-                    controller: controller.confirmPasswordControlleer,
-                    obscureText: true,
-                    validator: controller.confirmPasswordValidator,
-                  ),
-                  SizedBox(
-                    height: 100,
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
       floatingActionButton: Visibility(
         visible: MediaQuery.of(context).viewInsets.bottom == 0,
