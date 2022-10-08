@@ -7,15 +7,21 @@ import 'package:travel_aliga/app/utils/error_dialog.dart';
 class ChatController extends GetxController {
   ChatController({required this.item});
   final Result item;
-
+  TextEditingController chatContoller = TextEditingController();
+  List<Review> reviewList = [];
+  var visibleIcon = true.obs;
   @override
   void onInit() {
     super.onInit();
     updateList();
   }
+  
 
-  List<Review> reviewList = [];
-  TextEditingController chatContoller = TextEditingController();
+  @override
+  void onClose() {
+    super.onClose();
+    chatContoller.dispose();
+  }
   updateList() {
     reviewList.clear();
     for (var x in item.reviews) {
@@ -43,6 +49,16 @@ class ChatController extends GetxController {
       update();
     } else {
        ErrorDialoge.showSnakBar('Something Wrong!');
+    }
+  }
+
+   changingWidgets(String value) {
+    if (chatContoller.text.isNotEmpty) {
+      visibleIcon.value = false;
+      
+    } else {
+      visibleIcon.value = true;
+      
     }
   }
 }

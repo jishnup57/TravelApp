@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:developer';
-
 import 'package:get/get.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,7 +30,7 @@ class SplashController extends GetxController {
     bool isLogined = pref.getBool("isLogined") ?? false;
 
     log(isLogined.toString());
-    Timer(Duration(seconds: 3), () {
+    Timer(Duration(milliseconds: 1200), () {
       if (isLogined) {
         if (!hasExpired) {
           Get.offNamed(Paths.mainScreen);

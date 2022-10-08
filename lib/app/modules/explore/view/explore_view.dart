@@ -26,6 +26,7 @@ class ExploreView extends StatelessWidget {
         body: Stack(
       children: [
         CarouselSlider(
+          carouselController:controller.carouselController,
           options: CarouselOptions(
             height: height,
             viewportFraction: 1.0,

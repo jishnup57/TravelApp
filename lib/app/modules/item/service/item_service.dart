@@ -19,16 +19,26 @@ class ItemApi {
         log(response.data.toString());
         return Slots.fromJson(response.data);
       } else {
-        log('else of 200');
+       
         return Slots(message: 'Something wrong');
       }
     } on DioError catch (e) {
-      log('dio error');
+      if(e.response?.statusCode == 401){
+        return Slots(message: 'Service Error');
+      }else if(e.type == DioErrorType.connectTimeout){
+        return Slots(message: "Check your connection");
+      }else if(e.type == DioErrorType.receiveTimeout){
+        return Slots(message: "Unable to connect to server");
+      }else if(e.type == DioErrorType.other){
+        return Slots(message: 'Something Went Wrong');
+      }
+      
       return Slots(message: e.message.toString());
     } catch (e) {
-      log('catch error');
+     
       log(e.toString());
       return Slots(message: e.toString());
     }
+    
   }
 }

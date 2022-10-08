@@ -14,17 +14,19 @@ class FavorateView extends GetView<FavorateController> {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
-          children: [
-            const MainAppBar(
-              isFilter: true,
-              title: 'Favorite',
-            ),
-            SizedBox(
-              height: height * 0.82,
-              child: const Tabbs(tabWidget: TabContentFavorite()),
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const MainAppBar(
+                isFilter: true,
+                title: 'Favorite',
+              ),
+              SizedBox(
+                height: height*0.8,
+                child: const Tabbs(tabWidget: TabContentFavorite()),
+              ),
+            ],
+          ),
         ),
       ),
     );
