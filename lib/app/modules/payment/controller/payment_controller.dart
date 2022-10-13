@@ -21,7 +21,7 @@ class PaymentController extends GetxController {
   }
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
-    log(response.orderId.toString());
+  
     Get.to(PaymentView(
       orderId: response.orderId.toString(),
       paymentId: response.paymentId.toString(),

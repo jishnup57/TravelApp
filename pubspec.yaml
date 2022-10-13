@@ -27,7 +27,10 @@ dependencies:
   shared_preferences: ^2.0.15
   shimmer: ^2.0.0
   tab_indicator_styler: ^2.0.0
-
+  geocoding: ^2.0.5
+  geolocator: ^9.0.2
+  google_maps_flutter: ^2.2.1
+  fab_circular_menu:
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:

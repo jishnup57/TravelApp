@@ -20,6 +20,7 @@ class SearchApi {
       final response = await Dio().get(Url.search,queryParameters:{
         "search": query,
       } );
+      log(response.data.toString());
       if(response.statusCode == 200){
         return SearchResult(
           allSearchResult:  List<AllList>.from((response.data as List).map((x) => AllList.fromJson(x)))

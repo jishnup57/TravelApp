@@ -30,7 +30,7 @@ class AppPages {
     ),
     //  GetPage(
     //   name: Paths.item,
-    //   page: () => ItemView(),
+    //   page: () => ItemView(item: null),
     // ),
     GetPage(
       name: Paths.signIn,

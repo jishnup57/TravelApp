@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:travel_aliga/app/modules/map_search/view/map_search_view.dart';
 import 'package:travel_aliga/app/modules/search/views/widget/search_card.dart';
 import 'package:travel_aliga/app/modules/search/views/widget/search_idel_widget.dart';
 import 'package:travel_aliga/app/utils/colors.dart';
@@ -78,7 +79,9 @@ class SearchView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(() =>  MapSearchView());
+                          },
                           icon: const Image(
                             image:
                                 AssetImage('asset/image/icons-google-maps.png'),
