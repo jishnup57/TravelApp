@@ -47,3 +47,4 @@ app.*.map.json
 /android/app/release
 lib/app/utils/api_helper
 lib/app/modules/map_search/view/map_search_view.dart
+android/app/src/main/AndroidManifest.xml
