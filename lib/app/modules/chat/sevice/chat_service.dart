@@ -16,19 +16,17 @@ class ChatApi {
     Dio dio = await HelperIntercepter().getApiClient();
     try {
       final response = await dio.post(Url.baseUrl+Url.review,data:obj.toJson());
+      log( response.data.toString());
       if (response.statusCode! >= 200 && response.statusCode! <= 299 ) {
         log(response.data.toString());
         return Review.fromJson(response.data);
       } else {
-        log('else of 200');
         log(response.data.toString());
         return null;
       }
-    } on DioError catch (e) {
-      log('dio error $e');
+    } on DioError catch (_) {
       return null;
     } catch (e) {
-      log('catch error');
       log(e.toString());
       return null;
     }

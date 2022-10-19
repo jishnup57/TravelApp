@@ -58,7 +58,7 @@ class HomeView extends StatelessWidget {
                             final list = controllerHome.allCategoryList[index];
       
                             return ExploreMoreCard(
-                                img: "${Url.baseUrl}${list.image}");
+                                img: list.image);
                           },
                           itemCount:
                               HomeController.instance.allCategoryList.length,

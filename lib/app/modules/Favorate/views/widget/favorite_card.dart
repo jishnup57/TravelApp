@@ -34,13 +34,13 @@ class CardFavorite extends StatelessWidget {
                     loadingBuilder: (context, child, loadingProgress) =>
                         loadingProgress == null
                             ? child
-                            :  CustomWidget(
+                            : CustomWidget(
                                 hight: height * 0.18,
                                 width: width * 0.29,
                                 shapeBorder: ShapeDecoration(
                                   color: Colors.grey[400]!,
                                   shape: RoundedRectangleBorder(
-                                      borderRadius:  BorderRadius.circular(8)),
+                                      borderRadius: BorderRadius.circular(8)),
                                 ),
                               ),
                   ),
@@ -120,11 +120,12 @@ class CardFavorite2 extends StatelessWidget {
                   height: height * 0.18,
                   width: width * 0.29,
                   decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(.5),
-                      borderRadius: BorderRadius.circular(8),
-                      image: const DecorationImage(
-                          image: AssetImage('asset/image/north-east india.jpg'),
-                          fit: BoxFit.cover)),
+                    color: Colors.black.withOpacity(.5),
+                    borderRadius: BorderRadius.circular(8),
+                    image: const DecorationImage(
+                        image: AssetImage('asset/image/north-east india.jpg'),
+                        fit: BoxFit.cover),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0),
@@ -155,20 +156,6 @@ class CardFavorite2 extends StatelessWidget {
                   ),
                 )
               ],
-            ),
-          ),
-          Align(
-            alignment: Alignment.topRight,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CircleAvatar(
-                backgroundColor: AppColor.kBlackColor.withOpacity(.2),
-                child: Icon(
-                  Icons.bookmark,
-                  size: 24,
-                  color: AppColor.kPrimaryColor.withOpacity(.8),
-                ),
-              ),
             ),
           ),
         ],

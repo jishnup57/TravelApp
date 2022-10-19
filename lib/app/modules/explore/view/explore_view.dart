@@ -32,7 +32,7 @@ class ExploreView extends StatelessWidget {
             viewportFraction: 1.0,
             enlargeCenterPage: false,
             autoPlay: true,
-            autoPlayInterval: Duration(seconds: 5),
+            autoPlayInterval: Duration(seconds: 10),
             onPageChanged: (index, reason) {
               controller.changer(index);
             },

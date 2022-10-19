@@ -17,7 +17,7 @@ class SearchApi {
 
     try {
       log('Searching--->$query');
-      final response = await Dio().get(Url.search,queryParameters:{
+      final response = await Dio().get("${Url.baseUrl}${Url.search}",queryParameters:{
         "search": query,
       } );
       log(response.data.toString());
