@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:travel_aliga/app/modules/home/views/widget/explore_card.dart';
+import 'package:travel_aliga/app/modules/home/views/widget/item_view_category.dart';
 import 'package:travel_aliga/app/modules/home/views/widget/tab_content_home.dart';
 import 'package:travel_aliga/app/modules/home/views/widget/tabbs.dart';
 import 'package:travel_aliga/app/modules/home/views/widget/trending_widget.dart';
@@ -9,7 +10,6 @@ import 'package:travel_aliga/app/modules/widgets/appbar.dart';
 import 'package:travel_aliga/app/utils/colors.dart';
 import 'package:travel_aliga/app/utils/style.dart';
 import 'package:travel_aliga/app/utils/ui_helper/home_card_shimmer.dart';
-import 'package:travel_aliga/app/utils/urls.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -57,8 +57,13 @@ class HomeView extends StatelessWidget {
                           itemBuilder: (context, index) {
                             final list = controllerHome.allCategoryList[index];
       
-                            return ExploreMoreCard(
-                                img: list.image);
+                            return GestureDetector(
+                              child: ExploreMoreCard(
+                                  img: list.image),
+                                  onTap:(){
+                                    Get.to(()=>CategoryItemsView());
+                                  }
+                            );
                           },
                           itemCount:
                               HomeController.instance.allCategoryList.length,

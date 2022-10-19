@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travel_aliga/app/modules/search/model/searchmodel.dart';
+import 'package:travel_aliga/app/modules/home/model/all_pakage_model.dart';
 import 'package:travel_aliga/app/modules/widgets/image_show.dart';
 import 'package:travel_aliga/app/utils/colors.dart';
 import 'package:travel_aliga/app/utils/style.dart';
@@ -9,7 +9,7 @@ class CardSearch extends StatelessWidget {
     Key? key,
     required this.item,
   }) : super(key: key);
-  final AllList item;
+  final Result item;
   @override
   Widget build(BuildContext context) {
     return Card(

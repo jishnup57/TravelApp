@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:travel_aliga/app/modules/home/model/all_pakage_model.dart';
 import 'package:travel_aliga/app/modules/search/model/searchmodel.dart';
 import 'package:travel_aliga/app/utils/api_helper/internet_cheker.dart';
 import 'package:travel_aliga/app/utils/urls.dart';
@@ -11,7 +12,6 @@ class SearchApi {
     bool connectivity = await HelperInternetChecker.checkConnectivity();
 
     if(!connectivity){
-      print('********no internet*****');
       return null;
     }
 
@@ -23,14 +23,12 @@ class SearchApi {
       log(response.data.toString());
       if(response.statusCode == 200){
         return SearchResult(
-          allSearchResult:  List<AllList>.from((response.data as List).map((x) => AllList.fromJson(x)))
+          allSearchResult:  List<Result>.from((response.data as List).map((x) => Result.fromJson(x)))
         );
       }else{
-        log('else of 200');
         return SearchResult(message: 'Something wrong');
       }
     } on DioError catch(e){
-      log('dio error');
        return SearchResult(message: e.message.toString());
     }
     catch (e) {
