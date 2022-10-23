@@ -9,7 +9,7 @@ class Url{
   static String refreshToken = 'account/refresh/';
   static String search = 'packse/?';
   static String signup = 'account/register/';
-  static String slots ='http://10.0.2.2:8000/bookslot/{id}/';
+  static String slots ='https://goaliga.cartbia.ml/bookslot/{id}/';
   static String userProfile = 'account/userprofile/';
   static String verify = 'account/verify/';
 }

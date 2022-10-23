@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:travel_aliga/app/modules/chat/controller/chat_controller.dart';
 import 'package:travel_aliga/app/modules/chat/view/widget/chat_icon.dart';
 import 'package:travel_aliga/app/modules/home/model/all_pakage_model.dart';
+import 'package:travel_aliga/app/modules/widgets/named_appbar.dart';
 import 'package:travel_aliga/app/utils/colors.dart';
 import 'package:travel_aliga/app/utils/style.dart';
 import 'package:intl/intl.dart';
@@ -18,29 +18,9 @@ class ChatView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () => Get.back(),
-          child: Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: AppColor.kBlackColor,
-          ),
-        ),
-        systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: AppColor.kScaffoldColor,
-            statusBarIconBrightness: Brightness.dark),
-        title: Text(
-          "Reviews",
-          textScaleFactor: 1.15,
-          style: AppStyle.kCardTextStyle.copyWith(
-            color: AppColor.kBlackColor,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: AppColor.kScaffoldColor,
-        centerTitle: true,
-        elevation: 0,
-      ),
+      appBar: PreferredSize(
+        preferredSize: Size(double.infinity, 50),
+        child: NamedAppBar(title: "Reviews",)),
       body: Padding(
         padding: EdgeInsets.only(
             left: 16,

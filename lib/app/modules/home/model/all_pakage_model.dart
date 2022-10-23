@@ -1,3 +1,4 @@
+
 class AllPakages {
   AllPakages({
     this.count,
@@ -21,8 +22,12 @@ class AllPakages {
             ? null
             : List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
       );
+  factory AllPakages.fromCatList(List<dynamic> json) => AllPakages(
+    message: '',
+    results: List<Result>.from((json).map((x) => Result.fromJson(x))),
+  );
 }
-
+// List<AllCategory>.from((response.data as List).map((x) => AllCategory.fromJson(x))
 class Result {
   Result({
     required this.packageId,

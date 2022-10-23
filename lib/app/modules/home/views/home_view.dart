@@ -61,7 +61,7 @@ class HomeView extends StatelessWidget {
                               child: ExploreMoreCard(
                                   img: list.image),
                                   onTap:(){
-                                    Get.to(()=>CategoryItemsView());
+                                    Get.to(()=>CategoryItemsView(slugName: list.slug,));
                                   }
                             );
                           },
