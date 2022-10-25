@@ -1,7 +1,7 @@
 class Url{
   static String baseUrl = 'https://goaliga.cartbia.ml/';
 
-
+  static String addAddress='${baseUrl}payment/address/';
   static String allCategory = 'category/';
   static String allPakages = 'packages/';
   static String login = 'account/login/';
@@ -14,6 +14,3 @@ class Url{
   static String verify = 'account/verify/';
 }
 
-/**
- * https://goaliga.cartbia.ml/
- */

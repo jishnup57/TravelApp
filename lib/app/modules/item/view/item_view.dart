@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:travel_aliga/app/modules/explore/view/explore_view.dart';
 import 'package:travel_aliga/app/modules/home/model/all_pakage_model.dart';
 import 'package:travel_aliga/app/modules/item/controller/item_controller.dart';
+import 'package:travel_aliga/app/modules/item/view/widget/model_bottom_sheet.dart';
 import 'package:travel_aliga/app/modules/payment/controller/payment_controller.dart';
 import 'package:travel_aliga/app/modules/widgets/main_app_bar.dart';
 import 'package:travel_aliga/app/utils/colors.dart';
@@ -275,7 +276,8 @@ class ItemView extends StatelessWidget {
               textDirection: TextDirection.rtl,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  paymentController.option(item.packageName, item.price);
+                 // paymentController.option(item.packageName, item.price);
+                 bottomSheet(context);
                 },
                 icon: Row(
                   mainAxisSize: MainAxisSize.min,

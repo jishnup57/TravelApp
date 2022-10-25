@@ -29,14 +29,18 @@ class SigninView extends StatelessWidget {
             Image.asset(
               'asset/image/signin.jpg',
             ),
+            AppStyle.kHight20,
             Form(
               key: controller.signUpKey,
               child: Column(
                 children: [
-                  TextfieldWidget(
-                    hint: 'Email',
-                    textcontroller: controller.emailController,
-                    icon: Icons.alternate_email,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                    child: TextfieldWidget(
+                      hint: 'Email',
+                      textcontroller: controller.emailController,
+                      icon: Icons.alternate_email,
+                    ),
                   ),
                   GetBuilder<SigninController>(
                    // init:SigninController() ,

@@ -10,6 +10,13 @@ import 'package:travel_aliga/app/utils/urls.dart';
 import '../model/all_category_model.dart';
 
 class HomeController extends GetxController {
+  @override
+  void onInit() {
+    super.onInit();
+    fetchAllPakages();
+    featchAllCategories();
+  }
+
   static final HomeController instance = HomeController._internal();
 
   factory HomeController() {

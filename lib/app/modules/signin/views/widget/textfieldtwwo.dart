@@ -40,6 +40,7 @@ class TextfieldWidget2 extends StatelessWidget {
           letterSpacing: .8,
         ),
         decoration: InputDecoration(
+          fillColor:  AppColor.kFormfieldInside,
           border: InputBorder.none,
             prefixIcon: Icon(
             icon,

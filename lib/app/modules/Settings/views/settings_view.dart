@@ -6,6 +6,7 @@ import 'package:iconify_flutter/icons/fluent.dart';
 import 'package:iconify_flutter/icons/icons8.dart';
 import 'package:iconify_flutter/icons/ion.dart';
 import 'package:iconify_flutter/icons/mi.dart';
+import 'package:travel_aliga/app/modules/Settings/views/widget/screen_profile.dart';
 import 'package:travel_aliga/app/modules/Settings/views/widget/seperator.dart';
 import 'package:travel_aliga/app/modules/Settings/views/widget/settings_tile.dart';
 import 'package:travel_aliga/app/modules/widgets/appbar.dart';
@@ -72,7 +73,7 @@ class SettingsView extends GetView<SettingsController> {
               ),
             ),
             child: Column(
-              children: const [
+              children:  [
                 Divider(
                   height: 20,
                   indent: 100,
@@ -87,12 +88,15 @@ class SettingsView extends GetView<SettingsController> {
                   ),
                 ),
                 Seperator(),
-                SettingsTile(
-                  title: 'Profile Settings',
-                  icon: Iconify(
-                    AntDesign.user_outline,
-                    color: AppColor.kWhiteColor,
+                InkWell(
+                  child: SettingsTile(
+                    title: 'Profile Settings',
+                    icon: Iconify(
+                      AntDesign.user_outline,
+                      color: AppColor.kWhiteColor,
+                    ),
                   ),
+                  onTap: () =>Get.to(() =>  ProfileView()),
                 ),
                 Seperator(),
                 SettingsTile(
