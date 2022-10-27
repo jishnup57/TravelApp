@@ -1,10 +1,7 @@
 import 'package:get/get.dart';
-
-import 'package:travel_aliga/app/modules/Favorate/bindings/favorate_binding.dart';
 import 'package:travel_aliga/app/modules/Favorate/views/favorate_view.dart';
 import 'package:travel_aliga/app/modules/Settings/views/settings_view.dart';
 import 'package:travel_aliga/app/modules/home/views/home_view.dart';
-import 'package:travel_aliga/app/modules/mainscreen/bindings/mainscreen_binding.dart';
 import 'package:travel_aliga/app/modules/mainscreen/views/mainscreen_view.dart';
 import 'package:travel_aliga/app/modules/otp/bindings/otp_binding.dart';
 import 'package:travel_aliga/app/modules/otp/views/otp_view.dart';
@@ -49,7 +46,6 @@ class AppPages {
     GetPage(
       name: Routes.mainScreen,
       page: () => MainscreenView(),
-      binding: MainscreenBinding(),
     ),
     GetPage(
       name: Routes.search,
@@ -59,7 +55,6 @@ class AppPages {
     GetPage(
       name: Routes.favorate,
       page: () => FavorateView(),
-      binding: FavorateBinding(),
     ),
     GetPage(
       name: Routes.settings,

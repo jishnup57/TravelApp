@@ -1,14 +1,16 @@
 import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:travel_aliga/app/modules/Settings/views/widget/screen_profile.dart';
 import 'package:travel_aliga/app/modules/explore/view/explore_view.dart';
 import 'package:travel_aliga/app/modules/home/model/all_pakage_model.dart';
 import 'package:travel_aliga/app/modules/item/controller/item_controller.dart';
-import 'package:travel_aliga/app/modules/item/view/widget/model_bottom_sheet.dart';
 import 'package:travel_aliga/app/modules/payment/controller/payment_controller.dart';
 import 'package:travel_aliga/app/modules/widgets/main_app_bar.dart';
 import 'package:travel_aliga/app/utils/colors.dart';
+import 'package:travel_aliga/app/utils/error_dialog.dart';
 import 'package:travel_aliga/app/utils/style.dart';
 import 'package:travel_aliga/app/utils/ui_helper/home_card_shimmer.dart';
 import 'package:travel_aliga/app/utils/ui_helper/rating_star.dart';
@@ -32,7 +34,6 @@ class ItemView extends StatelessWidget {
       ),
       body: Stack(
         children: [
-        
           CachedNetworkImage(
             imageUrl: item.imagesMain,
             fit: BoxFit.fitHeight,
@@ -106,11 +107,11 @@ class ItemView extends StatelessWidget {
                           )),
                       child: SingleChildScrollView(
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              AppStyle.kHight10,
+                              AppStyle.kHight20,
                               Row(
                                 children: [
                                   Icon(
@@ -124,14 +125,14 @@ class ItemView extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              AppStyle.kHight8,
+                              AppStyle.kHight10,
                               Text(
                                 " ₹ ${item.price.toString()}",
                                 style: AppStyle.kIntermediateText.copyWith(
                                     fontSize: 20,
                                     color: Colors.black.withOpacity(0.7)),
                               ),
-                              AppStyle.kHight8,
+                              AppStyle.kHight10,
                               Text(
                                 item.overview,
                                 overflow: TextOverflow.ellipsis,
@@ -141,7 +142,7 @@ class ItemView extends StatelessWidget {
                                     fontWeight: FontWeight.w500,
                                     color: Color.fromARGB(255, 185, 185, 185)),
                               ),
-                              AppStyle.kHight8,
+                              AppStyle.kHight10,
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -175,7 +176,9 @@ class ItemView extends StatelessWidget {
                                           );
                                         }).toList(),
                                         onChanged: (value) {
-                                          log(value.toString());
+                                          int temp = int.parse(value.toString());
+                                          controller.selectedSlot = temp;
+                                          log(controller.selectedSlot.toString());
                                         },
                                       ),
                                     );
@@ -185,46 +188,14 @@ class ItemView extends StatelessWidget {
                                   )
                                 ],
                               ),
-                              Row(
-                                children: [
-                                  Text(
-                                    "Number of People :",
-                                    style: AppStyle.kIntermediateText,
-                                  ),
-                                  SizedBox(
-                                    width: 30,
-                                  ),
-                                  Text(
-                                    item.noOfPeoples,
-                                    style: AppStyle.kIntermediateText.copyWith(
-                                        color: AppColor.kBlackColor,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ],
+                              TileWidget(
+                                title: "Number of People",
+                                value: item.noOfPeoples,
                               ),
-                              AppStyle.kHight8,
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Things Included:",
-                                    style: AppStyle.kIntermediateText,
-                                  ),
-                                  SizedBox(
-                                    width: 25,
-                                  ),
-                                  Flexible(
-                                    child: Text(
-                                      item.inclusion,
-                                      style: AppStyle.kIntermediateText
-                                          .copyWith(
-                                              color: AppColor.kBlackColor,
-                                              fontWeight: FontWeight.w400),
-                                      maxLines: 4,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                ],
+                              AppStyle.kHight10,
+                              TileWidget(
+                                title: "Things Included",
+                                value: item.inclusion,
                               ),
                               AppStyle.kHight20,
                             ],
@@ -256,7 +227,8 @@ class ItemView extends StatelessWidget {
           ),
         ],
       ),
-      bottomSheet: Padding(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 8.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -275,9 +247,42 @@ class ItemView extends StatelessWidget {
             Directionality(
               textDirection: TextDirection.rtl,
               child: ElevatedButton.icon(
-                onPressed: () {
-                 // paymentController.option(item.packageName, item.price);
-                 bottomSheet(context);
+                onPressed: () async {
+                  if(controller.selectedSlot == null){
+                    ErrorDialoge.showSnakBar('Please Select a Available Date');
+                    return;
+                  }
+                  await controller.getAllAddress();
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (context) {
+                      return controller.addressList.isNotEmpty
+                          ? Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  addressTile(
+                                      title: 'Permenent address', type: 1),
+                                  Visibility(
+                                    visible: controller.addressList.length > 1,
+                                    child: addressTile(
+                                        title: 'Temporary address', type: 0),
+                                  )
+                                ],
+                              ),
+                            )
+                          : TextButton.icon(
+                              onPressed: () {
+                                Get.back();
+                                Get.to(() => ProfileView());
+                              },
+                              icon: Icon(Icons.add),
+                              label: Text("Add Address"));
+                    },
+                  );
                 },
                 icon: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -312,6 +317,64 @@ class ItemView extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  ListTile addressTile({required String title, required int type}) {
+    return ListTile(
+      title: Text(
+        title,
+        style: AppStyle.kIntermediateText.copyWith(color: Colors.black),
+      ),
+      trailing: IconButton(
+          onPressed: () {
+            Get.back();
+            Get.to(() => ProfileView());
+          },
+          icon: Icon(Icons.edit)),
+      onTap: () {
+        switch (type) {
+          case 1:
+            paymentController.option(item: item,addressID: controller.permanentAddress!.id!,slot: controller.selectedSlot!);
+            break;
+          default:
+            paymentController.option(item:item,addressID: controller.temporaryAddress!.id!,slot: controller.selectedSlot!);
+        }
+      },
+    );
+  }
+}
+
+class TileWidget extends StatelessWidget {
+  const TileWidget({
+    Key? key,
+    required this.title,
+    required this.value,
+  }) : super(key: key);
+  final String title;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Text(
+          "$title :",
+          style: AppStyle.kIntermediateText,
+        ),
+        SizedBox(
+          width: 30,
+        ),
+        Flexible(
+          child: Text(
+            value,
+            style: AppStyle.kIntermediateText.copyWith(
+                color: AppColor.kBlackColor, fontWeight: FontWeight.w400),
+            maxLines: 4,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
     );
   }
 }

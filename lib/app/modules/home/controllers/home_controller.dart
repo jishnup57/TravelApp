@@ -11,10 +11,10 @@ import '../model/all_category_model.dart';
 
 class HomeController extends GetxController {
   @override
-  void onInit() {
+  void onInit() async{
+    await fetchAllPakages();
+    await featchAllCategories();
     super.onInit();
-    fetchAllPakages();
-    featchAllCategories();
   }
 
   static final HomeController instance = HomeController._internal();

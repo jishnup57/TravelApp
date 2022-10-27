@@ -21,47 +21,61 @@ class TextfieldWidget2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-      decoration: BoxDecoration(
-        color: AppColor.kFormfieldInside,
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          color: AppColor.kButtonColor
-        )
+    return TextFormField(
+      controller: textcontroller,
+      keyboardType: keyType,
+      obscureText: obsecure,
+      style: const TextStyle(
+        height: 1.3,
+        color: Colors.black,
+        letterSpacing: .8,
       ),
-      child: TextFormField(
-        controller: textcontroller,
-        keyboardType: keyType,
-        obscureText: obsecure,
-        style: const TextStyle(
-          height: 1.3,
+      decoration: InputDecoration(
+         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        fillColor:  AppColor.kFormfieldInside,
+        filled: true,
+          prefixIcon: Icon(
+          icon,
           color: Colors.black,
-          letterSpacing: .8,
         ),
-        decoration: InputDecoration(
-          fillColor:  AppColor.kFormfieldInside,
-          border: InputBorder.none,
-            prefixIcon: Icon(
-            icon,
-            color: Colors.black,
+        suffixIcon: GestureDetector(
+          onTap: (){
+            Get.find<SigninController>().changeVisibility();
+          },
+          child: Icon(
+            Get.find<SigninController>().secure==true? Icons.visibility:Icons.visibility_off,
+            color: Colors.grey,
           ),
-          suffixIcon: GestureDetector(
-            onTap: (){
-              Get.find<SigninController>().changeVisibility();
-            },
-            child: Icon(
-              Get.find<SigninController>().secure==true? Icons.visibility:Icons.visibility_off,
-              color: Colors.grey,
-            ),
-          ),
-           hintText: hint,
-          hintStyle: TextStyle(
-            color: Colors.grey.withOpacity(.8),
-            fontSize: 14,
-          ),
-          
         ),
+         hintText: hint,
+        hintStyle: TextStyle(
+          color: Colors.grey.withOpacity(.8),
+          fontSize: 14,
+        ),
+              enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(
+          color: AppColor.kButtonColor,
+        ),
+      ),
+      disabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(
+          color: AppColor.kButtonColor,
+        ),
+      ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(
+          color: AppColor.kButtonColor,
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(
+          color: AppColor.kButtonColor,
+        ),
+      ),
       ),
     );
   }

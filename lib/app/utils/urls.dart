@@ -4,6 +4,7 @@ class Url{
   static String addAddress='${baseUrl}payment/address/';
   static String allCategory = 'category/';
   static String allPakages = 'packages/';
+  static String getFavorite = '${baseUrl}userfavourites/';
   static String login = 'account/login/';
   static String review = 'review/';
   static String refreshToken = 'account/refresh/';

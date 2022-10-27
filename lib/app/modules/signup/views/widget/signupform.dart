@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travel_aliga/app/utils/colors.dart';
+import 'package:travel_aliga/app/modules/signin/views/widget/textfield.dart';
 
 class SignUpTextforms extends StatelessWidget {
   const SignUpTextforms({
@@ -33,37 +33,7 @@ class SignUpTextforms extends StatelessWidget {
             fontSize: 18,
           ),
           obscureText: obscureText,
-          decoration: InputDecoration(
-            fillColor: AppColor.kWhiteColor,
-            filled: true,
-            prefixIcon: Icon(
-              icon,
-              color: Colors.black,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(
-                color: AppColor.kButtonColor,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(
-                color: Color(0xff0088d1),
-              ),
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(
-                color: AppColor.kFormfieldBorder,
-              ),
-            ),
-            hintText: text,
-            hintStyle: TextStyle(
-              fontSize: 16,
-              color: Colors.grey.withOpacity(.8),
-            ),
-          ),
+          decoration: CustomDecoration.inputdecoration(icon: icon,labelText: text)
         ),
       ),
     );

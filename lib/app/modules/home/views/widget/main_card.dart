@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travel_aliga/app/modules/home/model/all_pakage_model.dart';
 import 'package:travel_aliga/app/modules/item/view/item_view.dart';
-import 'package:travel_aliga/app/utils/colors.dart';
 import 'package:travel_aliga/app/utils/style.dart';
 import 'package:travel_aliga/app/utils/ui_helper/home_card_shimmer.dart';
 import 'package:travel_aliga/app/utils/ui_helper/rating_star.dart';
@@ -48,22 +47,6 @@ class MainCard extends StatelessWidget {
             child: Column(
               children: [
                 AppStyle.kHight8,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5),
-                      child: CircleAvatar(
-                        backgroundColor: AppColor.kBlackColor.withOpacity(.4),
-                        child: const Icon(
-                          Icons.bookmark_outline,
-                          size: 24,
-                          color: AppColor.kWhiteColor,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
                 const Spacer(),
                 Row(
                   children: [

@@ -7,7 +7,7 @@ class TabContentFavorite extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Expanded(
+    return  Expanded(
       child: TabBarView(
         physics: BouncingScrollPhysics(),
         children: [

@@ -7,7 +7,9 @@ import 'package:travel_aliga/app/modules/widgets/appbar.dart';
 
 import '../controllers/favorate_controller.dart';
 
-class FavorateView extends GetView<FavorateController> {
+class FavorateView extends StatelessWidget {
+  
+  final FavorateController controller = Get.put(FavorateController());
   @override
    Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;

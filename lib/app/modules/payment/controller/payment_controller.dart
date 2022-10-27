@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:travel_aliga/app/modules/home/model/all_pakage_model.dart';
 import 'package:travel_aliga/app/modules/payment/model/error_model.dart';
 import 'package:travel_aliga/app/modules/payment/view/payment_view.dart';
 import 'package:travel_aliga/app/routes/app_pages.dart';
@@ -11,6 +11,8 @@ import 'package:travel_aliga/app/routes/app_pages.dart';
 class PaymentController extends GetxController {
   Razorpay razorpay = Razorpay();
   late int price;
+  late int addressID;
+  late int packageID;
   @override
   void onInit() {
     super.onInit();
@@ -21,7 +23,7 @@ class PaymentController extends GetxController {
   }
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
-  
+    
     Get.to(PaymentView(
       orderId: response.orderId.toString(),
       paymentId: response.paymentId.toString(),
@@ -38,7 +40,7 @@ class PaymentController extends GetxController {
       paymentId: value.metadata.paymentId,
       amount: price,
       isSuccess: false,
-      errorMessage:value.description,
+      errorMessage: value.description,
     ));
   }
 
@@ -47,19 +49,21 @@ class PaymentController extends GetxController {
     log(response.walletName.toString());
   }
 
-  option(String packageName, int price) async {
-    this.price = price;
+  option({required Result item,required int addressID,required int slot}) async {
+    price = item.price;
+    this.addressID = addressID;
+    packageID = item.packageId;
     final value = await getUserDetails();
 
     var options = {
       'key': "rzp_test_jG8FLjSJeRkNGh",
       'amount': price * 100,
       'name': 'On-Demand',
-      'description': packageName,
+      'description': item.packageName,
       'prefill': {'contact': value.first, 'email': value.last},
       'timeout': 120,
-      'retry':{
-        'enabled':false,
+      'retry': {
+        'enabled': false,
       },
       'modal': {
         'confirm_close': true,
@@ -82,11 +86,11 @@ class PaymentController extends GetxController {
     return {phone, email};
   }
 
-  getBack(){
+  getBack() {
     Get.back();
   }
-  
-  gettoHome(){
+
+  gettoHome() {
     Get.offAllNamed(Paths.mainScreen);
   }
 

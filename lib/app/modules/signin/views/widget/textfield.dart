@@ -18,13 +18,6 @@ class TextfieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return
-        // Container(
-        //  margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        // decoration: BoxDecoration(
-        //     color: AppColor.kFormfieldInside,
-        //     borderRadius: BorderRadius.circular(10),
-        //     border: Border.all(color: AppColor.kButtonColor)),
-        //   child:
         TextFormField(
       controller: textcontroller,
       validator: (value) {
@@ -41,36 +34,21 @@ class TextfieldWidget extends StatelessWidget {
         color: Colors.black,
         letterSpacing: .8,
       ),
-      decoration: inputdecoration(icon: icon, labelText: hint),
-      /*
-       InputDecoration(
-        // border: InputBorder.none,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(
-            color: AppColor.kFormfieldBorder,
-          ),
-        ),
-        prefixIcon: Icon(
-          icon,
-          color: Colors.black,
-        ),
-        hintText: hint,
-        hintStyle: TextStyle(
-          color: Colors.grey.withOpacity(.8),
-          fontSize: 14,
-        ),
-      ),
-      //  ),
-      */
+      decoration: CustomDecoration.inputdecoration(icon: icon, labelText: hint),
     );
   }
 
-  InputDecoration inputdecoration(
-      {String? labelText, IconData? icon, String? iconn}) {
+  
+}
+
+class CustomDecoration {
+ static InputDecoration inputdecoration(
+      {String? labelText, IconData? icon,}) {
     return InputDecoration(
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       labelStyle: const TextStyle(color: Colors.black, letterSpacing: 1),
+      fillColor: AppColor.kFormfieldInside,
+      filled: true,
       hintText: labelText,
       hintStyle: TextStyle(
         color: Colors.grey.withOpacity(.8),
