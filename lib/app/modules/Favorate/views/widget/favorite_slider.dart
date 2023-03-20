@@ -18,7 +18,7 @@ class FavoriteSlider extends StatelessWidget {
         Expanded(
           child: SizedBox(
             child: GetBuilder<FavorateController>(
-              builder: (controller) => controller.favList.isNotEmpty
+              builder: (controller) => controller.allFavorateList.isNotEmpty
                   ? ListView.builder(
                       itemBuilder: (context, index) {
                         final item = controller.favList[index];

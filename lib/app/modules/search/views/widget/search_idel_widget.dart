@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travel_aliga/app/modules/Favorate/views/widget/favorite_card.dart';
 import 'package:travel_aliga/app/modules/home/controllers/home_controller.dart';
+import 'package:travel_aliga/app/modules/item/view/item_view.dart';
 import 'package:travel_aliga/app/modules/search/controllers/search_controller.dart';
 import 'package:travel_aliga/app/utils/style.dart';
 
@@ -32,7 +33,7 @@ class SearchIdleWidget extends StatelessWidget {
           itemBuilder: (context, index) {
             final tempList = HomeController.instance.allPakagesList;
             final item = tempList[index];
-            return CardFavorite(item: item);
+            return GestureDetector(child: CardFavorite(item: item,favorateVisible: false),onTap: ()=>Get.to(()=>ItemView(item: item)),);
           },
           separatorBuilder: (context, index) => AppStyle.kHight8,
           itemCount: HomeController.instance.allPakagesList.length,

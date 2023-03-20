@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:travel_aliga/app/modules/Settings/model/adress_model.dart';
@@ -9,11 +10,14 @@ import 'package:travel_aliga/app/modules/item/model/slot_model.dart';
 import 'package:travel_aliga/app/modules/item/service/item_service.dart';
 import 'package:travel_aliga/app/utils/error_dialog.dart';
 
+import '../../Favorate/controllers/favorate_controller.dart';
+
 class ItemController extends GetxController {
   ItemController({required this.item});
   @override
   void onInit() async {
     super.onInit();
+    checkIsFav();
     await getSlotes(item.packageId.toString());
   }
 
@@ -26,7 +30,7 @@ class ItemController extends GetxController {
   final Result item;
   List<SlotModel> avalableList = [];
   int? selectedSlot;
-
+   RxBool isFav = false.obs;
   
   getSlotes(String packageId) async {
     final response = await ItemApi().fetchSlot(packageId);
@@ -43,7 +47,23 @@ class ItemController extends GetxController {
     } else {
       ErrorDialoge.noNetworkAlert(Get.context!);
     }
-    log(response.toString());
+  }
+
+  addToFavorates()async{
+    log('addToFavorates start');
+    final response = await ItemApi().addFav(item.packageId.toString());
+      if (response != null) {
+      if (response.packageId != null) {
+         Get.snackbar("Success", "Item isAdded to Favourite",backgroundColor: Colors.black,colorText: Colors.white);
+         final favCtrl = Get.find<FavorateController>();
+       await favCtrl.fatchFavorates();
+       await checkIsFav();
+      } else {
+        ErrorDialoge.showSnakBar(response.message!);
+      }
+    } else {
+      ErrorDialoge.noNetworkAlert(Get.context!);
+    }
   }
 
   Future<void> _deleteImageFromCache() async {
@@ -80,5 +100,17 @@ class ItemController extends GetxController {
       permanentAddress = addressList[0];
       return;
     }
+  }
+
+  checkIsFav(){
+    final favCtrl = Get.find<FavorateController>();
+    for (var element in favCtrl.favList) {
+      if(element.packageId == item.packageId ){
+        isFav.value = true;
+        log("isFav");
+        return;
+      }
+    }
+
   }
 }

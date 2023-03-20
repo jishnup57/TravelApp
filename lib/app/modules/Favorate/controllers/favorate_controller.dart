@@ -13,7 +13,6 @@ class FavorateController extends GetxController {
   @override
   void onInit() async {
     await fatchFavorates();
-
     super.onInit();
   }
 
@@ -28,7 +27,6 @@ class FavorateController extends GetxController {
           allFavorateList.add(element);
         }
         pickListFromFav();
-        update();
       } else {
         ErrorDialoge.showSnakBar(response.message!);
       }

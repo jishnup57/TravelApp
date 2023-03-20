@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -233,16 +232,25 @@ class ItemView extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            ElevatedButton(
-              onPressed: () {},
-              child: Icon(Icons.bookmark_outline_rounded),
-              style: ElevatedButton.styleFrom(
-                  onPrimary: AppColor.kPrimaryColor,
-                  minimumSize: Size(40, 60),
-                  primary: AppColor.kWhiteColor,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  side: BorderSide(width: 2, color: AppColor.kPrimaryColor)),
+            Obx(() =>  ElevatedButton(
+                onPressed: () async {
+                  if(controller.isFav.value == true){
+                    Get.snackbar("Already Added", "Item is Already Added to Favourite",backgroundColor: Colors.black,colorText: Colors.white);
+                    return;
+                  }else{
+                  log('add to fav');
+                    controller.addToFavorates();
+                  }
+                },
+                child: Icon(Icons.bookmark_outline_rounded),
+                style: ElevatedButton.styleFrom(
+                    onPrimary:controller.isFav.value?AppColor.kWhiteColor: AppColor.kPrimaryColor,
+                    minimumSize: Size(40, 60),
+                    primary: controller.isFav.value? AppColor.kPrimaryColor:AppColor.kWhiteColor,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    side: BorderSide(width: 2, color: AppColor.kPrimaryColor)),
+              ),
             ),
             Directionality(
               textDirection: TextDirection.rtl,

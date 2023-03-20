@@ -4,6 +4,7 @@ class Url{
   static String addAddress='${baseUrl}payment/address/';
   static String allCategory = 'category/';
   static String allPakages = 'packages/';
+  static String addedToFav = '${baseUrl}favourites/{id}/';
   static String getFavorite = '${baseUrl}userfavourites/';
   static String login = 'account/login/';
   static String review = 'review/';
@@ -13,5 +14,6 @@ class Url{
   static String slots ='https://goaliga.cartbia.ml/bookslot/{id}/';
   static String userProfile = 'account/userprofile/';
   static String verify = 'account/verify/';
+  static String paymentInitilize = '${baseUrl}payment/pay/';
 }
 

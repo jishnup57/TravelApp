@@ -11,13 +11,15 @@ class AllFavorate {
 }
 
 class FavModel {
-  int id;
-  bool isFav;
-  int packageId;
+  int? id;
+  bool? isFav;
+  int? packageId;
+  String? message;
   FavModel({
-    required this.id,
-    required this.isFav,
-    required this.packageId,
+    this.id,
+    this.isFav,
+    this.packageId,
+    this.message,
   });
   factory FavModel.fromJson(Map<String, dynamic> json) => FavModel(
         id: json['id'],
